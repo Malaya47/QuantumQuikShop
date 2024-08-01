@@ -13,9 +13,7 @@ const ProductsListing = () => {
 
   // console.log(paramsObject.category)
 
-  const { data, loading, error } = useFetch(
-    `https://362c5c61-ae89-49bf-ae04-a6dd7351bae7-00-1ky1s3geviatc.sisko.replit.dev:3002/products`,
-  );
+  const { data, loading, error } = useFetch(` http://localhost:3000/products`);
 
   // console.log(data.products);
 
@@ -62,8 +60,8 @@ const ProductsListing = () => {
     sortByPrice === "Low to High"
       ? filterProducts?.sort((a, b) => a.productPrice - b.productPrice)
       : sortByPrice === "High to Low"
-        ? filterProducts?.sort((a, b) => b.productPrice - a.productPrice)
-        : filterProducts;
+      ? filterProducts?.sort((a, b) => b.productPrice - a.productPrice)
+      : filterProducts;
 
   return (
     <div>
