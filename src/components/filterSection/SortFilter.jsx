@@ -1,30 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getSelectedSort } from "../../features/filterSlice";
+import { useDispatch } from "react-redux";
 
 const SortFilter = () => {
-  const handleSortByPrice = () => {};
+  const dispatch = useDispatch();
+  const [sortByPrice, setSortByPrice] = useState("");
+  const handleSortByPrice = (e) => {
+    setSortByPrice(e.target.value);
+  };
+  useEffect(() => {
+    dispatch(getSelectedSort(sortByPrice));
+  }, [sortByPrice]);
   return (
     <section>
       <h5>Sort by</h5>
       <label className="form-check-label">
         <input
-          // onChange={handleSortByPrice}
+          onChange={handleSortByPrice}
           className="form-check-input"
           type="radio"
           name="price"
           value="Low to High"
-          // checked={sortByPrice === "Low to High"}
         />
         Price - Low to High
       </label>{" "}
       <br />
       <label className="form-check-label">
         <input
-          // onChange={handleSortByPrice}
+          onChange={handleSortByPrice}
           className="form-check-input"
           type="radio"
           name="price"
           value="High to Low"
-          // checked={sortByPrice === "High to Low"}
         />
         Price - High to Low
       </label>{" "}
