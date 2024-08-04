@@ -4,19 +4,38 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FilterSection from "../components/filterSection/FilterSection";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducts } from "../features/filterSlice";
+import {
+  fetchProducts,
+  fetchWomenProducts,
+  fetchMenProducts,
+  fetchKidsProducts,
+} from "../features/filterSlice";
 
 const ProductsListing = () => {
   const dispatch = useDispatch();
-  const products = useSelector((state) => state.filter.products.products);
+  const menProducts = useSelector((state) => state.filter.menProducts);
+  const womenProducts = useSelector((state) => state.filter.womenProducts);
+  const kidsProducts = useSelector((state) => state.filter.kidsProducts);
+  const allProducts = useSelector((state) => state.filter.products);
+  const selectedPrice = useSelector((state) => state.filter.selectedPrice);
+  const selectedRating = useSelector((state) => state.filter.selectedRating);
   const paramsObject = useParams();
   // console.log(paramsObject.category);
 
-  useEffect(() => {
-    dispatch(fetchProducts(paramsObject.category));
-  }, []);
+  // console.log(typeof Number(selectedRating));
 
-  // console.log(products);
+  // console.log(womenProducts);
+  // console.log(kidsProducts);
+  // console.log("Products array", allProducts);
+
+  const filtered = allProducts.filter((product) => {
+    const priceFilter = product.productPrice <= selectedPrice;
+    // const selectedRating = product.productRating <= Number(selectedRating);
+    return priceFilter;
+  });
+
+  // console.log(filtered);
+
   return (
     <div>
       <Header />

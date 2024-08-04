@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { getSelectedCategory } from "../../features/filterSlice";
+import {
+  fetchMenProducts,
+  fetchWomenProducts,
+  fetchKidsProducts,
+} from "../../features/filterSlice";
 import { useDispatch } from "react-redux";
 
 const CategoryFilter = ({ urlParam }) => {
@@ -17,8 +21,17 @@ const CategoryFilter = ({ urlParam }) => {
     }
   };
   useEffect(() => {
-    dispatch(getSelectedCategory(category));
+    category.forEach((cat) => {
+      if (cat === "Men") {
+        dispatch(fetchMenProducts("Men"));
+      } else if (cat === "Women") {
+        dispatch(fetchWomenProducts("Women"));
+      } else if (cat === "Kids") {
+        dispatch(fetchKidsProducts("Kids"));
+      }
+    });
   }, [category]);
+
   return (
     <section>
       <h5>Category</h5>

@@ -8,12 +8,45 @@ export const fetchProducts = createAsyncThunk(
       `http://localhost:3000/products/category/${category}`
     );
     // console.log(response.data);
-    return response.data;
+    return response.data.products;
+  }
+);
+export const fetchMenProducts = createAsyncThunk(
+  "products/fetchMenProducts",
+  async (category) => {
+    const response = await axios.get(
+      `http://localhost:3000/products/category/${category}`
+    );
+    // console.log(response.data);
+    return response.data.products;
+  }
+);
+export const fetchWomenProducts = createAsyncThunk(
+  "products/fetchWomenProducts",
+  async (category) => {
+    const response = await axios.get(
+      `http://localhost:3000/products/category/${category}`
+    );
+    // console.log(response.data);
+    return response.data.products;
+  }
+);
+export const fetchKidsProducts = createAsyncThunk(
+  "products/fetchKidsProducts",
+  async (category) => {
+    const response = await axios.get(
+      `http://localhost:3000/products/category/${category}`
+    );
+    // console.log(response.data);
+    return response.data.products;
   }
 );
 
 const initialState = {
   products: [],
+  menProducts: [],
+  womenProducts: [],
+  kidsProducts: [],
   filteredProducts: [],
   cart: [],
   wishlist: [],
@@ -55,6 +88,63 @@ export const filterSlice = createSlice({
       state.products = action.payload;
     });
     builder.addCase(fetchProducts.rejected, (state, action) => {
+      state.status = "error";
+      console.log(action);
+    });
+    builder.addCase(fetchMenProducts.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(fetchMenProducts.fulfilled, (state, action) => {
+      state.status = "Success";
+      state.menProducts = action.payload;
+      // Filter out already existing products in the state.products array
+      const newProducts = action.payload.filter(
+        (newProduct) =>
+          !state.products.some((product) => product._id === newProduct._id)
+      );
+
+      // Add only new, unique products to the state.products array
+      state.products = [...state.products, ...newProducts];
+    });
+    builder.addCase(fetchMenProducts.rejected, (state, action) => {
+      state.status = "error";
+      console.log(action);
+    });
+    builder.addCase(fetchWomenProducts.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(fetchWomenProducts.fulfilled, (state, action) => {
+      state.status = "Success";
+      state.womenProducts = action.payload;
+      // Filter out already existing products in the state.products array
+      const newProducts = action.payload.filter(
+        (newProduct) =>
+          !state.products.some((product) => product._id === newProduct._id)
+      );
+
+      // Add only new, unique products to the state.products array
+      state.products = [...state.products, ...newProducts];
+    });
+    builder.addCase(fetchWomenProducts.rejected, (state, action) => {
+      state.status = "error";
+      console.log(action);
+    });
+    builder.addCase(fetchKidsProducts.pending, (state) => {
+      state.status = "loading";
+    });
+    builder.addCase(fetchKidsProducts.fulfilled, (state, action) => {
+      state.status = "Success";
+      state.kidsProducts = action.payload;
+      // Filter out already existing products in the state.products array
+      const newProducts = action.payload.filter(
+        (newProduct) =>
+          !state.products.some((product) => product._id === newProduct._id)
+      );
+
+      // Add only new, unique products to the state.products array
+      state.products = [...state.products, ...newProducts];
+    });
+    builder.addCase(fetchKidsProducts.rejected, (state, action) => {
       state.status = "error";
       console.log(action);
     });
