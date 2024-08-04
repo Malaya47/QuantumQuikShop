@@ -47,7 +47,7 @@ const initialState = {
   menProducts: [],
   womenProducts: [],
   kidsProducts: [],
-  filteredProducts: [],
+  filteredProducts: null,
   cart: [],
   wishlist: [],
   status: "idle",
@@ -77,6 +77,15 @@ export const filterSlice = createSlice({
     getSelectedSort: (state, action) => {
       state.selectedSort = action.payload;
       console.log(current(state));
+    },
+    emptyMenArray: (state, action) => {
+      state.menProducts = [];
+    },
+    emptyWomenArray: (state, action) => {
+      state.womenProducts = [];
+    },
+    emptyKidsArray: (state, action) => {
+      state.kidsProducts = [];
     },
   },
   extraReducers: (builder) => {
@@ -156,6 +165,9 @@ export const {
   getSelectedPrice,
   getSelectedSort,
   getSelectedCategory,
+  emptyMenArray,
+  emptyWomenArray,
+  emptyKidsArray,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

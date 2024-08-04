@@ -12,29 +12,28 @@ import {
 } from "../features/filterSlice";
 
 const ProductsListing = () => {
-  const dispatch = useDispatch();
   const menProducts = useSelector((state) => state.filter.menProducts);
   const womenProducts = useSelector((state) => state.filter.womenProducts);
   const kidsProducts = useSelector((state) => state.filter.kidsProducts);
   const allProducts = useSelector((state) => state.filter.products);
   const selectedPrice = useSelector((state) => state.filter.selectedPrice);
-  const selectedRating = useSelector((state) => state.filter.selectedRating);
+  const selectedRating = useSelector((state) =>
+    Number(state.filter.selectedRating)
+  );
+  const selectedSort = useSelector((state) => state.filter.selectedSort);
   const paramsObject = useParams();
   // console.log(paramsObject.category);
 
-  // console.log(typeof Number(selectedRating));
+  console.log(selectedSort);
 
-  // console.log(womenProducts);
-  // console.log(kidsProducts);
-  // console.log("Products array", allProducts);
+  // const filtered = allProducts.filter((product) => {
+  //   const priceFilter = product.productPrice <= selectedPrice;
+  //   const ratingFilter = product.productRating >= selectedRating;
 
-  const filtered = allProducts.filter((product) => {
-    const priceFilter = product.productPrice <= selectedPrice;
-    // const selectedRating = product.productRating <= Number(selectedRating);
-    return priceFilter;
-  });
+  //   return priceFilter && ratingFilter;
+  // });
 
-  // console.log(filtered);
+  // console.log("filtered array", filtered);
 
   return (
     <div>

@@ -3,34 +3,64 @@ import {
   fetchMenProducts,
   fetchWomenProducts,
   fetchKidsProducts,
+  emptyMenArray,
+  emptyWomenArray,
+  emptyKidsArray,
 } from "../../features/filterSlice";
 import { useDispatch } from "react-redux";
 
 const CategoryFilter = ({ urlParam }) => {
   const dispatch = useDispatch();
-  // console.log(urlParam);
-  const [category, setCategory] = useState([urlParam]);
+  const [category, setCategory] = useState([]);
+
+  useEffect(() => {
+    // Checking the urlParam and setting the category state accordingly
+    if (urlParam === "Men") {
+      setCategory((prevCategory) => [...prevCategory, "Men"]);
+      dispatch(fetchMenProducts("Men"));
+    } else if (urlParam === "Women") {
+      setCategory((prevCategory) => [...prevCategory, "Women"]);
+      dispatch(fetchWomenProducts("Women"));
+    } else if (urlParam === "Kids") {
+      setCategory((prevCategory) => [...prevCategory, "Kids"]);
+      dispatch(fetchKidsProducts("Kids"));
+    }
+  }, [urlParam, dispatch]);
 
   const handleCategoryChange = (e) => {
     if (e.target.checked) {
-      setCategory((prevState) => [...prevState, e.target.value]);
+      setCategory((prevCategory) => [...prevCategory, e.target.value]);
+      if (e.target.value === "Men") {
+        dispatch(fetchMenProducts(e.target.value));
+      } else if (e.target.value === "Women") {
+        dispatch(fetchWomenProducts(e.target.value));
+      } else if (e.target.value === "Kids") {
+        dispatch(fetchKidsProducts(e.target.value));
+      }
     } else {
-      setCategory((prevState) =>
-        prevState.filter((prev) => prev !== e.target.value)
+      setCategory((prevCategory) =>
+        prevCategory.filter((val) => val !== e.target.value)
       );
+      if (e.target.value === "Men") {
+        setCategory((prevVal) =>
+          prevVal.filter((val) => val !== e.target.value)
+        );
+        dispatch(emptyMenArray());
+      } else if (e.target.value === "Women") {
+        setCategory((prevVal) =>
+          prevVal.filter((val) => val !== e.target.value)
+        );
+
+        dispatch(emptyWomenArray());
+      } else if (e.target.value === "Kids") {
+        setCategory((prevVal) =>
+          prevVal.filter((val) => val !== e.target.value)
+        );
+
+        dispatch(emptyKidsArray());
+      }
     }
   };
-  useEffect(() => {
-    category.forEach((cat) => {
-      if (cat === "Men") {
-        dispatch(fetchMenProducts("Men"));
-      } else if (cat === "Women") {
-        dispatch(fetchWomenProducts("Women"));
-      } else if (cat === "Kids") {
-        dispatch(fetchKidsProducts("Kids"));
-      }
-    });
-  }, [category]);
 
   return (
     <section>
