@@ -79,13 +79,13 @@ export const filterSlice = createSlice({
       console.log(current(state));
     },
     emptyMenArray: (state, action) => {
-      state.menProducts = [];
+      state.menProducts = action.payload;
     },
     emptyWomenArray: (state, action) => {
-      state.womenProducts = [];
+      state.womenProducts = action.payload;
     },
     emptyKidsArray: (state, action) => {
-      state.kidsProducts = [];
+      state.kidsProducts = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -100,12 +100,14 @@ export const filterSlice = createSlice({
       state.status = "error";
       console.log(action);
     });
+    // for Men products
     builder.addCase(fetchMenProducts.pending, (state) => {
       state.status = "loading";
     });
     builder.addCase(fetchMenProducts.fulfilled, (state, action) => {
       state.status = "Success";
       state.menProducts = action.payload;
+
       // Filter out already existing products in the state.products array
       const newProducts = action.payload.filter(
         (newProduct) =>
@@ -119,12 +121,14 @@ export const filterSlice = createSlice({
       state.status = "error";
       console.log(action);
     });
+    // for Women products
     builder.addCase(fetchWomenProducts.pending, (state) => {
       state.status = "loading";
     });
     builder.addCase(fetchWomenProducts.fulfilled, (state, action) => {
       state.status = "Success";
       state.womenProducts = action.payload;
+
       // Filter out already existing products in the state.products array
       const newProducts = action.payload.filter(
         (newProduct) =>
@@ -138,12 +142,14 @@ export const filterSlice = createSlice({
       state.status = "error";
       console.log(action);
     });
+    // for Kids products
     builder.addCase(fetchKidsProducts.pending, (state) => {
       state.status = "loading";
     });
     builder.addCase(fetchKidsProducts.fulfilled, (state, action) => {
       state.status = "Success";
       state.kidsProducts = action.payload;
+
       // Filter out already existing products in the state.products array
       const newProducts = action.payload.filter(
         (newProduct) =>

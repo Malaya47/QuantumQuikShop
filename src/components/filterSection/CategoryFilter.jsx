@@ -45,19 +45,19 @@ const CategoryFilter = ({ urlParam }) => {
         setCategory((prevVal) =>
           prevVal.filter((val) => val !== e.target.value)
         );
-        dispatch(emptyMenArray());
+        dispatch(emptyMenArray([]));
       } else if (e.target.value === "Women") {
         setCategory((prevVal) =>
           prevVal.filter((val) => val !== e.target.value)
         );
 
-        dispatch(emptyWomenArray());
+        dispatch(emptyWomenArray([]));
       } else if (e.target.value === "Kids") {
         setCategory((prevVal) =>
           prevVal.filter((val) => val !== e.target.value)
         );
 
-        dispatch(emptyKidsArray());
+        dispatch(emptyKidsArray([]));
       }
     }
   };

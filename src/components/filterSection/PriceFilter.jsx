@@ -9,7 +9,7 @@ const PriceFilter = () => {
     setPrice(e.target.value);
   };
   useEffect(() => {
-    dispatch(getSelectedPrice(price));
+    dispatch(getSelectedPrice(Number(price)));
   }, [price]);
   return (
     <section>

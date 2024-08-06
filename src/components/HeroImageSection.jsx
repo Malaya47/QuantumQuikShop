@@ -1,6 +1,26 @@
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  emptyMenArray,
+  emptyWomenArray,
+  emptyKidsArray,
+} from "../features/filterSlice";
 
 const HeroImageSection = () => {
+  const dispatch = useDispatch();
+  const categoryHandler = (e) => {
+    if (e.target.id === "Men") {
+      dispatch(emptyWomenArray([]));
+      dispatch(emptyKidsArray([]));
+    } else if (e.target.id === "Women") {
+      dispatch(emptyMenArray([]));
+      dispatch(emptyKidsArray([]));
+    } else if (e.target.id === "Kids") {
+      dispatch(emptyWomenArray([]));
+      dispatch(emptyMenArray([]));
+    }
+  };
+
   return (
     <div>
       <section className="mt-5 mb-5 container">
@@ -11,6 +31,8 @@ const HeroImageSection = () => {
               <img
                 src="https://placehold.co/300x200?text=Men"
                 className="rounded img-fluid"
+                id="Men"
+                onClick={categoryHandler}
               />{" "}
             </Link>
           </div>
@@ -20,6 +42,8 @@ const HeroImageSection = () => {
               <img
                 src="https://placehold.co/300x200?text=Women"
                 className="rounded img-fluid"
+                id="Women"
+                onClick={categoryHandler}
               />{" "}
             </Link>
           </div>
@@ -29,6 +53,8 @@ const HeroImageSection = () => {
               <img
                 src="https://placehold.co/300x200?text=Kids"
                 className="rounded img-fluid"
+                id="Kids"
+                onClick={categoryHandler}
               />{" "}
             </Link>
           </div>

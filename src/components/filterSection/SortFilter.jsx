@@ -4,13 +4,11 @@ import { useDispatch } from "react-redux";
 
 const SortFilter = () => {
   const dispatch = useDispatch();
-  const [sortByPrice, setSortByPrice] = useState("");
+
   const handleSortByPrice = (e) => {
-    setSortByPrice(e.target.value);
+    dispatch(getSelectedSort(e.target.value));
   };
-  useEffect(() => {
-    dispatch(getSelectedSort(sortByPrice));
-  }, [sortByPrice]);
+
   return (
     <section>
       <h5>Sort by</h5>

@@ -3,6 +3,7 @@ import PriceFilter from "./PriceFilter";
 import CategoryFilter from "./CategoryFilter";
 import RatingFilter from "./RatingFilter";
 import SortFilter from "./SortFilter";
+import { useSelector } from "react-redux";
 
 const FilterSection = ({ urlParam }) => {
   const handleClearFilter = () => {};
