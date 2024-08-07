@@ -9,6 +9,7 @@ import ProductsListing from "./pages/ProductsListing";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ProductDetails from "./components/ProductDetails";
 import Cart from "./pages/Cart";
+import Wishlist from "./pages/Wishlist";
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
   {
     path: "/cart",
     element: <Cart />,
+  },
+  {
+    path: "/wishlist",
+    element: <Wishlist />,
   },
 ]);
 

@@ -4,6 +4,7 @@ import {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
+  addToWishlist,
 } from "../features/filterSlice";
 
 const Cart = () => {
@@ -48,6 +49,11 @@ const Cart = () => {
 
     totalAmount = cartTotalPrice - discountAmount + deliveryCharges;
   }
+
+  const handleAddToWishlist = (product) => {
+    // dispatch action to add it in wishlist array
+    dispatch(addToWishlist({ ...product, quantity: 1 }));
+  };
 
   return (
     <>
@@ -121,6 +127,7 @@ const Cart = () => {
                                   Remove From Cart
                                 </button>
                                 <button
+                                  onClick={() => handleAddToWishlist(product)}
                                   className="btn btn-dark ms-3"
                                   style={{ width: "158px" }}
                                 >

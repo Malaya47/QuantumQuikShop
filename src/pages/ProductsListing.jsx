@@ -20,6 +20,7 @@ const ProductsListing = () => {
   const selectedPrice = useSelector((state) => state.filter.selectedPrice);
   const selectedRating = useSelector((state) => state.filter.selectedRating);
   const selectedSort = useSelector((state) => state.filter.selectedSort);
+  const searchBoxValue = useSelector((state) => state.filter.searchKeyWord);
 
   const [allProductsToView, setAllProductsToView] = useState([]);
 
@@ -41,6 +42,11 @@ const ProductsListing = () => {
       : selectedSort === "High to Low"
       ? filteredProducts.sort((a, b) => b.productPrice - a.productPrice)
       : filteredProducts;
+
+  // Serach box functionality
+  const finalProductView = finalProductsToView.filter((product) =>
+    product.productName.toLowerCase().includes(searchBoxValue.toLowerCase())
+  );
 
   return (
     <div>
@@ -80,7 +86,7 @@ const ProductsListing = () => {
               </div>
             </div>
           </div> */}
-          <CardComponent finalProductsToView={finalProductsToView} />
+          <CardComponent finalProductsToView={finalProductView} />
         </section>
       </section>
     </div>

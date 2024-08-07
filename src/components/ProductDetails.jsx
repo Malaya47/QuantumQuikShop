@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { fetchProductDetails } from "../features/filterSlice";
+import {
+  fetchProductDetails,
+  addToWishlist,
+  addToCart,
+} from "../features/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProductDetails = () => {
@@ -9,7 +13,17 @@ const ProductDetails = () => {
   // console.log(paramsObject.id);
 
   const product = useSelector((state) => state.filter.productDetail);
-  console.log(product);
+  // console.log(product);
+
+  const handleAddToWishlist = (product) => {
+    // dispatch action to add it in wishlist array
+    dispatch(addToWishlist(product));
+  };
+
+  const handleAddToCart = (product) => {
+    // dispatch action to add it in cart array
+    dispatch(addToCart({ ...product, quantity: 1 }));
+  };
 
   useEffect(() => {
     dispatch(fetchProductDetails(paramsObject.id));
@@ -92,7 +106,7 @@ const ProductDetails = () => {
                   clothing low-top shirts for men.
                 </p>
 
-                <div className="row">
+                {/* <div className="row">
                   <dt className="col-3">Type:</dt>
                   <dd className="col-9">Regular</dd>
 
@@ -104,7 +118,7 @@ const ProductDetails = () => {
 
                   <dt className="col-3">Brand</dt>
                   <dd className="col-9">Reebook</dd>
-                </div>
+                </div> */}
 
                 <hr />
 
@@ -152,19 +166,19 @@ const ProductDetails = () => {
                     </div>
                   </div>
                 </div> */}
-                <a href="#" className="btn btn-warning shadow-0">
-                  {" "}
-                  Buy now{" "}
-                </a>
-                <a href="#" className="btn btn-primary shadow-0">
-                  <i className="me-1 fa fa-shopping-basket"></i> Add to cart
-                </a>
-                <a
-                  href="#"
-                  className="btn btn-light border border-secondary py-2 icon-hover px-3"
+                <button
+                  onClick={() => handleAddToWishlist(product)}
+                  className="btn btn-dark shadow-0 me-3"
                 >
-                  <i className="me-1 fa fa-heart fa-lg"></i> Save
-                </a>
+                  {" "}
+                  Add to wishlist{" "}
+                </button>
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className="btn btn-dark shadow-0"
+                >
+                  Add to cart
+                </button>
               </div>
             </main>
           </div>

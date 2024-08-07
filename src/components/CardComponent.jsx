@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { addToCart } from "../features/filterSlice";
+import { addToCart, addToWishlist } from "../features/filterSlice";
 import { useDispatch } from "react-redux";
 
 const CardComponent = ({ finalProductsToView }) => {
@@ -8,6 +8,11 @@ const CardComponent = ({ finalProductsToView }) => {
   const handleAddToCart = (product) => {
     // dispatch action to add it in cart array
     dispatch(addToCart({ ...product, quantity: 1 }));
+  };
+
+  const handleAddToWishlist = (product) => {
+    // dispatch action to add it in wishlist array
+    dispatch(addToWishlist(product));
   };
 
   return (
@@ -44,7 +49,11 @@ const CardComponent = ({ finalProductsToView }) => {
                   >
                     Add to Cart
                   </button>
-                  <button type="button" className="btn btn-dark w-100 mt-1">
+                  <button
+                    onClick={() => handleAddToWishlist(product)}
+                    type="button"
+                    className="btn btn-dark w-100 mt-1"
+                  >
                     Add to Wishlist
                   </button>
                 </div>

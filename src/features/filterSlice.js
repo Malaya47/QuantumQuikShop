@@ -60,6 +60,7 @@ const initialState = {
   selectedRating: null,
   selectedPrice: null,
   selectedSort: null,
+  searchKeyWord: "",
 };
 
 export const filterSlice = createSlice({
@@ -128,6 +129,25 @@ export const filterSlice = createSlice({
       } else {
         itemPresent.quantity--;
       }
+    },
+    addToWishlist: (state, action) => {
+      const itemPresent = state.wishlist.find(
+        (item) => item._id === action.payload._id
+      );
+      if (itemPresent) {
+        return;
+      } else {
+        state.wishlist.push(action.payload);
+      }
+    },
+    removeFromWishList: (state, action) => {
+      const removeWishList = state.wishlist.filter(
+        (product) => product._id !== action.payload
+      );
+      state.wishlist = removeWishList;
+    },
+    searchProduct: (state, action) => {
+      state.searchKeyWord = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -220,6 +240,9 @@ export const {
   removeFromCart,
   incrementQuantity,
   decrementQuantity,
+  addToWishlist,
+  removeFromWishList,
+  searchProduct,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
