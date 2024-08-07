@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
-export const fetchProducts = createAsyncThunk(
-  "products/fetchProducts",
-  async (category) => {
+export const fetchProductDetails = createAsyncThunk(
+  "products/fetchProductDetails",
+  async (productId) => {
     const response = await axios.get(
-      `http://localhost:3000/products/category/${category}`
+      `http://localhost:3000/productDetails/${productId}`
     );
-    // console.log(response.data);
-    return response.data.products;
+    console.log(response.data.product);
+    return response.data.product;
   }
 );
 export const fetchMenProducts = createAsyncThunk(
@@ -43,12 +43,16 @@ export const fetchKidsProducts = createAsyncThunk(
 );
 
 const initialState = {
+  productDetail: {},
   products: [],
   menProducts: [],
   womenProducts: [],
   kidsProducts: [],
   filteredProducts: null,
-  cart: [],
+  cart: {
+    cartArray: [],
+    cartQuantity: null,
+  },
   wishlist: [],
   status: "idle",
   error: null,
@@ -87,16 +91,54 @@ export const filterSlice = createSlice({
     emptyKidsArray: (state, action) => {
       state.kidsProducts = action.payload;
     },
+    addToCart: (state, action) => {
+      const itemPresent = state.cart.cartArray.find(
+        (item) => item._id === action.payload._id
+      );
+
+      if (itemPresent) {
+        itemPresent.quantity++;
+      } else {
+        state.cart.cartArray.push(action.payload);
+        // state.cart.cartArray = [...state.cart.cartArray, action.payload];
+      }
+    },
+    removeFromCart: (state, action) => {
+      const removeFromCart = state.cart.cartArray.filter(
+        (item) => item._id !== action.payload
+      );
+      state.cart.cartArray = removeFromCart;
+    },
+    incrementQuantity: (state, action) => {
+      const itemPresent = state.cart.cartArray.find(
+        (item) => item._id === action.payload
+      );
+
+      itemPresent.quantity++;
+    },
+    decrementQuantity: (state, action) => {
+      const itemPresent = state.cart.cartArray.find(
+        (item) => item._id === action.payload
+      );
+      if (itemPresent.quantity === 1) {
+        const removeFromCart = state.cart.cartArray.filter(
+          (item) => item._id !== action.payload
+        );
+        state.cart.cartArray = removeFromCart;
+      } else {
+        itemPresent.quantity--;
+      }
+    },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchProducts.pending, (state) => {
+    builder.addCase(fetchProductDetails.pending, (state) => {
       state.status = "loading";
     });
-    builder.addCase(fetchProducts.fulfilled, (state, action) => {
+    builder.addCase(fetchProductDetails.fulfilled, (state, action) => {
       state.status = "Success";
-      state.products = action.payload;
+      state.productDetail = action.payload;
     });
-    builder.addCase(fetchProducts.rejected, (state, action) => {
+    builder.addCase(fetchProductDetails.rejected, (state, action) => {
       state.status = "error";
       console.log(action);
     });
@@ -174,6 +216,10 @@ export const {
   emptyMenArray,
   emptyWomenArray,
   emptyKidsArray,
+  addToCart,
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

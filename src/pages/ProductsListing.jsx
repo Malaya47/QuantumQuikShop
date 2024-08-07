@@ -33,29 +33,14 @@ const ProductsListing = () => {
     return priceFilter && ratingFilter;
   });
 
+  // After applying filters I need to sort my filteredProducts array on the basis of price (low to high OR high to low)
+
   const finalProductsToView =
     selectedSort === "Low to High"
       ? filteredProducts.sort((a, b) => a.productPrice - b.productPrice)
       : selectedSort === "High to Low"
       ? filteredProducts.sort((a, b) => b.productPrice - a.productPrice)
       : filteredProducts;
-
-  // const allProductsToView = [...menProducts, ...womenProducts, ...kidsProducts];
-
-  // const filteredProducts = allProductsToView.filter((product) => {
-  //   const priceFilter = product.productPrice <= selectedPrice;
-  //   const ratingFilter = product.productRating >= selectedRating;
-
-  //   return priceFilter && ratingFilter;
-  // });
-
-  // After applying filters I need to sort my filteredProducts array on the basis of price (low to high OR high to low)
-  // const finalProductsToView =
-  //   selectedSort === "Low to High"
-  //     ? filteredProducts.sort((a, b) => a.productPrice - b.productPrice)
-  //     : selectedSort === "High to Low"
-  //     ? filteredProducts.sort((a, b) => b.productPrice - a.productPrice)
-  //     : filteredProducts;
 
   return (
     <div>

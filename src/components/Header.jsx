@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom";
+
 const Header = () => {
   return (
     <header>
@@ -30,11 +32,9 @@ const Header = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                 Cart
-
-                </a>
-
+                <NavLink to={"/cart"} className="nav-link">
+                  Cart
+                </NavLink>
               </li>
             </ul>
           </div>
