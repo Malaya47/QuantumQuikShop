@@ -1,2 +1,7 @@
-main {
+.filterContainer {
+  padding-top: 88px;
+}
+
+.linkDecoration {
+  text-decoration: none;
 }

@@ -49,7 +49,7 @@ const ProductsListing = () => {
   );
 
   return (
-    <div>
+    <div className="backgroundColor">
       <Header />
       <section className="row">
         {/* This is for filter section */}

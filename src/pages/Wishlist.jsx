@@ -1,7 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { addToCart, removeFromWishList } from "../features/filterSlice";
+import {
+  addToCart,
+  removeFromWishList,
+  deleteWishlistItem,
+} from "../features/filterSlice";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import Header from "../components/Header";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
@@ -10,15 +17,20 @@ const Wishlist = () => {
   const handleAddToCart = (product) => {
     // dispatch action to add it in cart array
     dispatch(addToCart({ ...product, quantity: 1 }));
+    toast.success("Product added to cart");
   };
 
   const handleRemoveFromWishlist = (id) => {
     dispatch(removeFromWishList(id));
+    dispatch(deleteWishlistItem(id));
+    toast.warning("Product removed from wishlist");
   };
 
   return (
     <>
-      <h2 className="text-center">My Wishlist</h2>
+      <ToastContainer theme="dark" autoClose={1000} />
+      <Header />
+      <h2 className="text-center mt-5 py-4">My Wishlist</h2>
 
       <div className="container py-5">
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">

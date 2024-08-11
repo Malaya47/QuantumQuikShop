@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 const FilterSection = ({ urlParam }) => {
   const handleClearFilter = () => {};
   return (
-    <div>
+    <div className="filterContainer ps-3">
       <h5>Filters</h5> <span>Clear</span>
       <PriceFilter />
       <CategoryFilter urlParam={urlParam} />

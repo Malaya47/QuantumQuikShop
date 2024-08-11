@@ -7,7 +7,7 @@ export const fetchProductDetails = createAsyncThunk(
     const response = await axios.get(
       `http://localhost:3000/productDetails/${productId}`
     );
-    console.log(response.data.product);
+
     return response.data.product;
   }
 );
@@ -39,6 +39,95 @@ export const fetchKidsProducts = createAsyncThunk(
     );
     // console.log(response.data);
     return response.data.products;
+  }
+);
+
+export const postProductInCart = createAsyncThunk(
+  "products/addToCart",
+  async (product) => {
+    const response = await axios.post(
+      `http://localhost:3000/products/addToCart`,
+      product,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  }
+);
+
+// export const fetchProductsFromCart = createAsyncThunk(
+//   "products/fetchCart",
+//   async () => {
+//     const response = await axios.get("http://localhost:3000/products/cart");
+
+//     console.log(repsonse.data);
+
+//     return response.data;
+//   }
+// );
+
+export const putIncreaseQuantity = createAsyncThunk(
+  "product/putIncrease",
+  async (product) => {
+    const response = axios.put(
+      `http://localhost:3000/product/updateQuantity/${product._id}`,
+      { ...product, quantity: product.quantity + 1 }
+    );
+    return response.data;
+  }
+);
+
+export const putDecreaseQuantity = createAsyncThunk(
+  "product/putDecrease",
+  async (product) => {
+    const response = axios.put(
+      `http://localhost:3000/product/updateQuantity/${product._id}`,
+      { ...product, quantity: product.quantity - 1 }
+    );
+    return response.data;
+  }
+);
+
+export const deleteCartItem = createAsyncThunk(
+  "product/deleteProduct",
+  async (id) => {
+    const response = await axios.delete(
+      `http://localhost:3000/product/deleteProduct/${id}`
+    );
+
+    return response.data;
+  }
+);
+
+export const postProductInWishlist = createAsyncThunk(
+  "products/addToWishlist",
+  async (product) => {
+    const response = await axios.post(
+      `http://localhost:3000/products/addToWishlist`,
+      product,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  }
+);
+
+export const deleteWishlistItem = createAsyncThunk(
+  "product/deleteWishlistProduct",
+  async (id) => {
+    const response = await axios.delete(
+      `http://localhost:3000/product/deleteProductWishlist/${id}`
+    );
+
+    return response.data;
   }
 );
 
@@ -149,6 +238,9 @@ export const filterSlice = createSlice({
     searchProduct: (state, action) => {
       state.searchKeyWord = action.payload;
     },
+    heartIconToggler: (state, action) => {
+      state.heartIcon = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProductDetails.pending, (state) => {
@@ -225,6 +317,70 @@ export const filterSlice = createSlice({
       state.status = "error";
       console.log(action);
     });
+
+    // cases for adding data in cart database
+    builder.addCase(postProductInCart.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(postProductInCart.fulfilled, (state, action) => {
+      state.status = "Success";
+    });
+    builder.addCase(postProductInCart.rejected, (state, action) => {
+      state.status = "error";
+    });
+    // cart increaseQuantity put request
+    builder.addCase(putIncreaseQuantity.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(putIncreaseQuantity.fulfilled, (state, action) => {
+      state.status = "Success";
+    });
+    builder.addCase(putIncreaseQuantity.rejected, (state, action) => {
+      state.status = "error";
+    });
+    // cart decreaseQuantity put request
+    builder.addCase(putDecreaseQuantity.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(putDecreaseQuantity.fulfilled, (state, action) => {
+      state.status = "Success";
+    });
+    builder.addCase(putDecreaseQuantity.rejected, (state, action) => {
+      state.status = "error";
+    });
+
+    // delete cart item
+    builder.addCase(deleteCartItem.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(deleteCartItem.fulfilled, (state, action) => {
+      state.status = "Success";
+    });
+    builder.addCase(deleteCartItem.rejected, (state, action) => {
+      state.status = "error";
+    });
+
+    // for adddig data in wishlist
+    builder.addCase(postProductInWishlist.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(postProductInWishlist.fulfilled, (state, action) => {
+      state.status = "Success";
+    });
+    builder.addCase(postProductInWishlist.rejected, (state, action) => {
+      state.status = "error";
+    });
+
+    // for deleting wishlist item
+    builder.addCase(deleteWishlistItem.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(deleteWishlistItem.fulfilled, (state, action) => {
+      state.status = "Success";
+    });
+    builder.addCase(deleteWishlistItem.rejected, (state, action) => {
+      state.status = "error";
+    });
   },
 });
 
@@ -243,6 +399,7 @@ export const {
   addToWishlist,
   removeFromWishList,
   searchProduct,
+  heartIconToggler,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

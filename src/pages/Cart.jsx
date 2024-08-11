@@ -5,27 +5,35 @@ import {
   incrementQuantity,
   decrementQuantity,
   addToWishlist,
+  putIncreaseQuantity,
+  putDecreaseQuantity,
+  deleteCartItem,
+  postProductInWishlist,
 } from "../features/filterSlice";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+import Header from "../components/Header";
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.filter.cart.cartArray);
 
-  const decreaseQuantityHandler = (id) => {
-    console.log("Decrease clicked");
+  const decreaseQuantityHandler = (id, product) => {
     // Dispatch to decrease quantity of that product only
     dispatch(decrementQuantity(id));
+    dispatch(putDecreaseQuantity(product));
   };
 
-  const increaseQuantityHandler = (id) => {
-    console.log("Increase clicked");
+  const increaseQuantityHandler = (id, product) => {
     // Dispatch to increase quantity of that product only
     dispatch(incrementQuantity(id));
+    dispatch(putIncreaseQuantity(product));
   };
 
   const removeFromCartHandler = (id) => {
-    console.log("removed from cart", id);
     dispatch(removeFromCart(id));
+    dispatch(deleteCartItem(id));
+    toast.warning("Product removed from cart");
   };
 
   // cart price calculation
@@ -53,14 +61,18 @@ const Cart = () => {
   const handleAddToWishlist = (product) => {
     // dispatch action to add it in wishlist array
     dispatch(addToWishlist({ ...product, quantity: 1 }));
+    dispatch(postProductInWishlist(product));
+    toast.success("Product added to wishlist");
   };
 
   return (
     <>
+      <ToastContainer theme="dark" autoClose={1000} />
+      <Header />
       <div className="container">
         <div className="row justify-content-center">
           <div className="col-12">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mt-5 py-4">
               Shopping Cart
             </h1>
             <div className="mt-12">
@@ -99,7 +111,10 @@ const Cart = () => {
                                 <button
                                   className="btn btn-light btn-sm"
                                   onClick={() =>
-                                    decreaseQuantityHandler(product._id)
+                                    decreaseQuantityHandler(
+                                      product._id,
+                                      product
+                                    )
                                   }
                                 >
                                   -
@@ -110,7 +125,10 @@ const Cart = () => {
                                 <button
                                   className="btn btn-light btn-sm"
                                   onClick={() =>
-                                    increaseQuantityHandler(product._id)
+                                    increaseQuantityHandler(
+                                      product._id,
+                                      product
+                                    )
                                   }
                                 >
                                   +
