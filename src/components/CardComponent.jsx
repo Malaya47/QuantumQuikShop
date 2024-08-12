@@ -4,25 +4,24 @@ import {
   addToWishlist,
   postProductInCart,
   postProductInWishlist,
+  gotoCartToggle,
 } from "../features/filterSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useState } from "react";
 
 const CardComponent = ({ finalProductsToView }) => {
-  const [disabledButtons, setDisabledButtons] = useState({});
   const dispatch = useDispatch();
+  const gotoCart = useSelector((state) => state.filter.gotoCart);
 
   const handleAddToCart = (product) => {
     // dispatch action to add it in cart array
     dispatch(addToCart({ ...product, quantity: 1 }));
     dispatch(postProductInCart({ ...product, quantity: 1 }));
     toast.success("Product added to cart");
-    setDisabledButtons((prevState) => ({
-      ...prevState,
-      [product._id]: true,
-    }));
+
+    dispatch(gotoCartToggle({ [product._id]: true }));
   };
 
   const handleAddToWishlist = (product) => {
@@ -62,14 +61,21 @@ const CardComponent = ({ finalProductsToView }) => {
                   </h5>
 
                   <p className="card-text">&#8377; {product.productPrice}</p>
-                  <button
-                    onClick={() => handleAddToCart(product)}
-                    type="button"
-                    className="btn btn-dark w-100"
-                    disabled={disabledButtons[product._id] || false}
-                  >
-                    Add to Cart
-                  </button>
+
+                  {gotoCart[product._id] ? (
+                    <Link className="btn btn-dark w-100" to="/cart">
+                      Go to Cart
+                    </Link>
+                  ) : (
+                    <Link
+                      onClick={() => handleAddToCart(product)}
+                      type="button"
+                      className="btn btn-dark w-100"
+                    >
+                      Add to Cart
+                    </Link>
+                  )}
+
                   <button
                     onClick={() => handleAddToWishlist(product)}
                     type="button"

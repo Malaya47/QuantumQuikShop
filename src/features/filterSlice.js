@@ -150,6 +150,7 @@ const initialState = {
   selectedPrice: null,
   selectedSort: null,
   searchKeyWord: "",
+  gotoCart: {},
 };
 
 export const filterSlice = createSlice({
@@ -240,6 +241,9 @@ export const filterSlice = createSlice({
     },
     heartIconToggler: (state, action) => {
       state.heartIcon = action.payload;
+    },
+    gotoCartToggle: (state, action) => {
+      state.gotoCart = { ...state.gotoCart, ...action.payload };
     },
   },
   extraReducers: (builder) => {
@@ -400,6 +404,7 @@ export const {
   removeFromWishList,
   searchProduct,
   heartIconToggler,
+  gotoCartToggle,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

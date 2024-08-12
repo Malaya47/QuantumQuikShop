@@ -13,7 +13,6 @@ const PriceFilter = () => {
   }, [price]);
   return (
     <section>
-      
       <h5>Price</h5>
       <input
         onChange={handlePriceChange}

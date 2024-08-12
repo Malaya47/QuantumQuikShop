@@ -9,6 +9,7 @@ import {
   putDecreaseQuantity,
   deleteCartItem,
   postProductInWishlist,
+  gotoCartToggle,
 } from "../features/filterSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,6 +18,7 @@ import Header from "../components/Header";
 const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.filter.cart.cartArray);
+  const gotoCart = useSelector((state) => state.filter.gotoCart);
 
   const decreaseQuantityHandler = (id, product) => {
     // Dispatch to decrease quantity of that product only
@@ -33,6 +35,8 @@ const Cart = () => {
   const removeFromCartHandler = (id) => {
     dispatch(removeFromCart(id));
     dispatch(deleteCartItem(id));
+    dispatch(gotoCartToggle({ [id]: false }));
+
     toast.warning("Product removed from cart");
   };
 
