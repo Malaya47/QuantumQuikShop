@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Header = () => {
   const dispatch = useDispatch();
   const wishlist = useSelector((state) => state.filter.wishlist);
-  const cart = useSelector((state) => state.filter.cart.cartArray)
+  const cart = useSelector((state) => state.filter.cart.cartArray);
   const searchHandler = (e) => {
     dispatch(searchProduct(e.target.value));
   };
@@ -14,9 +14,9 @@ const Header = () => {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
         <div className="container-fluid">
-          <a className="navbar-brand text-light" href="#">
+          <NavLink to="/" className="navbar-brand text-light">
             ShoppingBuzz
-          </a>
+          </NavLink>
           <button
             className="navbar-toggler"
             type="button"
@@ -48,9 +48,13 @@ const Header = () => {
             </div>
             <ul className="navbar-nav ms-auto d-flex align-items-center">
               <li className="nav-item">
-                <a className="btn btn-secondary" aria-current="page" href="#">
+                <NavLink
+                  to={"/login"}
+                  className="btn btn-secondary"
+                  aria-current="page"
+                >
                   Login
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item ms-3">
                 <NavLink className="nav-link text-light" to="/wishlist">

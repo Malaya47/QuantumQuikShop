@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
+
 import axios from "axios";
 
 export const fetchProductDetails = createAsyncThunk(
@@ -151,6 +152,7 @@ const initialState = {
   selectedSort: null,
   searchKeyWord: "",
   gotoCart: {},
+  addresses: [],
 };
 
 export const filterSlice = createSlice({
@@ -244,6 +246,27 @@ export const filterSlice = createSlice({
     },
     gotoCartToggle: (state, action) => {
       state.gotoCart = { ...state.gotoCart, ...action.payload };
+    },
+    addAddresses: (state, action) => {
+      state.addresses = [...state.addresses, action.payload];
+    },
+    updateAddress: (state, action) => {
+      const addressIndex = state.addresses.findIndex(
+        (add) => add.id === action.payload.id
+      );
+
+      if (addressIndex !== -1) {
+        // Update the address at the found index with the new data
+        state.addresses[addressIndex] = {
+          ...state.addresses[addressIndex],
+          ...action.payload,
+        };
+      }
+    },
+    removeAddress: (state, action) => {
+      state.addresses = state.addresses.filter(
+        (add) => add.id !== action.payload
+      );
     },
   },
   extraReducers: (builder) => {
@@ -405,6 +428,9 @@ export const {
   searchProduct,
   heartIconToggler,
   gotoCartToggle,
+  addAddresses,
+  updateAddress,
+  removeAddress,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
