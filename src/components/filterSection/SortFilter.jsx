@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getSelectedSort } from "../../features/filterSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const SortFilter = () => {
   const dispatch = useDispatch();
+  const selectedSort = useSelector((state) => state.filter.selectedSort);
 
   const handleSortByPrice = (e) => {
     dispatch(getSelectedSort(e.target.value));
@@ -19,6 +20,7 @@ const SortFilter = () => {
           type="radio"
           name="price"
           value="Low to High"
+          checked={selectedSort === "Low to High"}
         />
         Price - Low to High
       </label>{" "}
@@ -30,6 +32,7 @@ const SortFilter = () => {
           type="radio"
           name="price"
           value="High to Low"
+          checked={selectedSort === "High to Low"}
         />
         Price - High to Low
       </label>{" "}

@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { getSelectedRating } from "../../features/filterSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const RatingFilter = () => {
   const dispatch = useDispatch();
+  const selectedRating = useSelector((state) => state.filter.selectedRating);
 
   const handleRatingChange = (e) => {
     dispatch(getSelectedRating(Number(e.target.value)));
@@ -19,6 +20,7 @@ const RatingFilter = () => {
           name="ratings"
           value={4}
           onChange={handleRatingChange}
+          checked={selectedRating === 4}
         />{" "}
         4 Stars & above
       </label>{" "}
@@ -30,6 +32,7 @@ const RatingFilter = () => {
           name="ratings"
           value={3}
           onChange={handleRatingChange}
+          checked={selectedRating === 3}
         />{" "}
         3 Stars & above
       </label>{" "}
@@ -41,6 +44,7 @@ const RatingFilter = () => {
           name="ratings"
           value={2}
           onChange={handleRatingChange}
+          checked={selectedRating === 2}
         />{" "}
         2 Stars & above
       </label>{" "}
@@ -52,6 +56,7 @@ const RatingFilter = () => {
           name="ratings"
           value={1}
           onChange={handleRatingChange}
+          checked={selectedRating === 1}
         />{" "}
         1 Stars & above
       </label>{" "}

@@ -197,6 +197,11 @@ export const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
+    clearFilter: (state, action) => {
+      state.selectedPrice = action.payload.selectedPrice;
+      state.selectedRating = action.payload.selectedRating;
+      state.selectedSort = action.payload.selectedSort;
+    },
     getSelectedCategory: (state, action) => {
       state.selectedCategory = action.payload;
     },
@@ -450,6 +455,7 @@ export const filterSlice = createSlice({
 });
 
 export const {
+  clearFilter,
   getSelectedRating,
   getSelectedPrice,
   getSelectedSort,
