@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddressForm from "../components/AddressForm";
 import { useSelector, useDispatch } from "react-redux";
-import { removeAddress } from "../features/filterSlice";
+import { removeAddress, deleteAddress } from "../features/filterSlice";
 
 const Address = () => {
   const dispatch = useDispatch();
@@ -25,6 +25,7 @@ const Address = () => {
 
   const removeHandler = (id) => {
     dispatch(removeAddress(id));
+    dispatch(deleteAddress(id));
   };
 
   return (
@@ -70,7 +71,7 @@ const Address = () => {
                 </button>
               </div>
               <div className="modal-body text-light">
-                <AddressForm address={currentAddress} />
+                <AddressForm address={currentAddress} setShowModal={setShowModal} />
               </div>
               <div className="modal-footer">
                 <button

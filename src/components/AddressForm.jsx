@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { addAddresses, updateAddress} from "../features/filterSlice";
-import { v4 as uuidv4 } from 'uuid'; // Import the UUID library
+import {
+  addAddresses,
+  updateAddress,
+  addAddress,
+  updatedAddress,
+} from "../features/filterSlice";
+import { v4 as uuidv4 } from "uuid"; // Import the UUID library
 
-const AddressForm = ({ address }) => {
+const AddressForm = ({ address, setShowModal }) => {
   const dispatch = useDispatch();
-  const [id, setId] = useState(uuidv4()); 
+  const [id, setId] = useState(uuidv4());
   const [name, setName] = useState("");
   const [house, setHouse] = useState("");
   const [city, setCity] = useState("");
@@ -16,7 +21,7 @@ const AddressForm = ({ address }) => {
 
   useEffect(() => {
     if (address) {
-      setId(address.id); 
+      setId(address.id);
       setName(address.name);
       setHouse(address.house);
       setCity(address.city);
@@ -41,10 +46,29 @@ const AddressForm = ({ address }) => {
     };
 
     if (address) {
-      console.log("address updated");
       dispatch(updateAddress(newAddress));
+      dispatch(updatedAddress(newAddress));
+      setShowModal(false);
+      setId("");
+      setName("");
+      setHouse("");
+      setCity("");
+      setState("");
+      setCountry("");
+      setPostalCode("");
+      setNumber("");
     } else {
       dispatch(addAddresses(newAddress));
+      dispatch(addAddress(newAddress));
+      setShowModal(false);
+      setId("");
+      setName("");
+      setHouse("");
+      setCity("");
+      setState("");
+      setCountry("");
+      setPostalCode("");
+      setNumber("");
     }
   };
 
