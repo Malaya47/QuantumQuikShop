@@ -30,7 +30,7 @@ const HeroImageSection = () => {
         />
       </section>
 
-      <section className=" mb-5 container">
+      <section className=" mb-5 mt-5">
         <div className="row">
           <div className="col-md-4">
             <Link to="/products/Men">

@@ -2,7 +2,7 @@ import "./App.css";
 import { useEffect } from "react";
 import Header from "./components/Header";
 import HeroImageSection from "./components/HeroImageSection";
-import NewArrivalsSection from "./components/NewArrivalsSection";
+// import NewArrivalsSection from "./components/NewArrivalsSection";
 import Footer from "./components/Footer";
 
 export default function App() {
@@ -10,7 +10,7 @@ export default function App() {
     <main>
       <Header />
       <HeroImageSection />
-      <NewArrivalsSection />
+
       <Footer />
     </main>
   );

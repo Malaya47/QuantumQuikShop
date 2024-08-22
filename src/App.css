@@ -2,6 +2,10 @@
   padding-top: 88px;
 } */
 
+body {
+  overflow-x: hidden;
+}
+
 .linkDecoration {
   text-decoration: none;
 }
