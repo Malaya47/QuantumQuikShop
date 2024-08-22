@@ -1,7 +1,40 @@
-.filterContainer {
+/* .filterContainer {
   padding-top: 88px;
-}
+} */
 
 .linkDecoration {
   text-decoration: none;
+}
+
+.form-check-input {
+  border-color: black;
+}
+
+.form-check-input:checked {
+  background-color: black;
+  border-color: black;
+}
+
+/* Customize the range track */
+.form-range {
+  --bs-range-bg: black; /* Change the track background */
+  --bs-range-thumb-bg: black; /* Change the thumb background */
+  --bs-range-thumb-border-color: black; /* Change the thumb border color */
+}
+
+/* Customize the range thumb */
+.form-range::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black; /* Thumb color */
+  border: 2px solid black; /* Thumb border */
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: black; /* Thumb color */
+  border: 1px solid black; /* Thumb border */
 }

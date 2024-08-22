@@ -12,7 +12,7 @@ const PriceFilter = () => {
   };
 
   return (
-    <section>
+    <section className="mt-4 mb-4">
       <h5>Price</h5>
       <input
         onChange={handlePriceChange}
@@ -24,6 +24,11 @@ const PriceFilter = () => {
         id="price"
         value={selectedPrice || 1000}
       />
+      <div className="d-flex justify-content-between">
+        <div>1000</div>
+        <div>1500</div>
+        <div>2000</div>
+      </div>
     </section>
   );
 };

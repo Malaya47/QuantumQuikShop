@@ -11,7 +11,7 @@ const RatingFilter = () => {
   };
 
   return (
-    <section>
+    <section className="mb-4">
       <h5>Rating</h5>
       <label className="form-check-label">
         <input

@@ -8,11 +8,11 @@ import { clearFilter } from "../../features/filterSlice";
 
 const FilterSection = ({ urlParam }) => {
   const dispatch = useDispatch();
- 
+
   const handleClearFilter = () => {
     dispatch(
       clearFilter({
-        selectedPrice: null,
+        selectedPrice: 1000,
         selectedRating: null,
         selectedSort: null,
       })
@@ -20,11 +20,13 @@ const FilterSection = ({ urlParam }) => {
   };
 
   return (
-    <div className="filterContainer ps-3">
-      <h5>Filters</h5>{" "}
-      <span className="btn btn-dark btn-sm" onClick={handleClearFilter}>
-        Clear
-      </span>
+    <div className="mt-5 bg-body-tertiary rounded px-3 py-3">
+      <div className="d-flex justify-content-between">
+        <h5>Filters</h5>{" "}
+        <span className="btn btn-dark btn-sm" onClick={handleClearFilter}>
+          Clear
+        </span>
+      </div>
       <PriceFilter />
       <CategoryFilter urlParam={urlParam} />
       <RatingFilter />

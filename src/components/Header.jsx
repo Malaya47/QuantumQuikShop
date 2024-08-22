@@ -12,10 +12,10 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-dark fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark text-light px-2 fixed-top">
         <div className="container-fluid">
           <NavLink to="/" className="navbar-brand text-light">
-            ShoppingBuzz
+            Shoppify
           </NavLink>
           <button
             className="navbar-toggler"

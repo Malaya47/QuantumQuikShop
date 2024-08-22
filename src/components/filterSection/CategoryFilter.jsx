@@ -63,12 +63,12 @@ const CategoryFilter = ({ urlParam }) => {
   };
 
   return (
-    <section>
+    <section className="mb-4">
       <h5>Category</h5>
       <label className="form-check-label">
         <input
           onChange={handleCategoryChange}
-          className="form-check-input"
+          className="form-check-input form-check-input"
           type="checkbox"
           value="Men"
           checked={category.includes("Men")}
@@ -79,7 +79,7 @@ const CategoryFilter = ({ urlParam }) => {
       <label className="form-check-label">
         <input
           onChange={handleCategoryChange}
-          className="form-check-input"
+          className="form-check-input form-check-input"
           type="checkbox"
           value="Women"
           checked={category.includes("Women")}

@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import CardComponent from "../components/CardComponent";
-import { useParams } from "react-router-dom";
+import { Link, NavLink, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FilterSection from "../components/filterSection/FilterSection";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,6 +11,7 @@ import {
 } from "../features/filterSlice";
 
 const ProductsListing = () => {
+ 
   const dispatch = useDispatch();
   const paramsObject = useParams();
   const menProducts = useSelector((state) => state.filter.menProducts);
@@ -51,7 +52,29 @@ const ProductsListing = () => {
   return (
     <div className="backgroundColor">
       <Header />
-      <section className="row">
+
+      <section className="text-center" style={{ marginTop: "70px" }}>
+        <NavLink style={{ color: "black" }} className="linkDecoration" to={"/"}>
+          Home
+        </NavLink>{" "}
+        /{" "}
+        {[
+          menProducts.length && "Men",
+          womenProducts.length && "Women",
+          kidsProducts.length && "Kids",
+        ]
+          .filter(Boolean)
+          .join(" & ")}
+      </section>
+
+      <section>
+        <h1 className="text-center display-2">Discover Your Signature Style</h1>
+        <p className="text-center display-5">
+          Elevate your wardrobe with versatile pieces for any mood.
+        </p>
+      </section>
+
+      <section className="row px-2">
         {/* This is for filter section */}
         <section className="col-md-3">
           <FilterSection urlParam={paramsObject.category} />
@@ -87,6 +110,7 @@ const ProductsListing = () => {
             </div>
           </div> */}
           <CardComponent finalProductsToView={finalProductView} />
+          
         </section>
       </section>
     </div>
