@@ -6,6 +6,7 @@ import {
   addToCart,
 } from "../features/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
+import Header from "./Header";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,8 @@ const ProductDetails = () => {
 
   return (
     <section>
-      <section className="py-5">
+      <Header />
+      <section className="mt-5 pt-5">
         <div className="container">
           <div className="row gx-5">
             <aside className="col-lg-6">
@@ -43,7 +45,7 @@ const ProductDetails = () => {
                     margin: "auto",
                   }}
                   className="rounded-4 fit"
-                  src="https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/big.webp"
+                  src={product.productImageURL}
                   alt="Main product"
                 />
               </div>
@@ -86,7 +88,10 @@ const ProductDetails = () => {
                     <i className="fa fa-star"></i>
                     <i className="fa fa-star"></i>
                     <i className="fas fa-star-half-alt"></i>
-                    <span className="ms-1"> {product.productRating} </span>
+                    <span className="ms-1">
+                      {" "}
+                      Rating {product.productRating}{" "}
+                    </span>
                   </div>
                   <span className="text-muted">
                     <i className="fas fa-shopping-basket fa-sm mx-1"></i>154
@@ -100,10 +105,25 @@ const ProductDetails = () => {
                 </div>
 
                 <p>
-                  Modern look and quality demo item is a streetwear-inspired
-                  collection that continues to break away from the conventions
-                  of mainstream fashion. Made in Italy, these black and brown
-                  clothing low-top shirts for men.
+                  Step into a world of timeless elegance and modern
+                  sophistication with our latest collection. Designed for those
+                  who appreciate both form and function, our range offers a
+                  diverse selection of products that cater to a variety of
+                  tastes and occasions. Each item in this collection is a
+                  testament to our commitment to quality and style, meticulously
+                  crafted from premium materials that ensure longevity and
+                  comfort.
+                </p>
+
+                <p>
+                  Our collection is inspired by the latest trends, yet remains
+                  rooted in classic design principles, making it versatile
+                  enough to complement any wardrobe. From everyday essentials
+                  that provide effortless comfort to standout pieces that make a
+                  bold statement, every item is thoughtfully designed to enhance
+                  your lifestyle. Whether you're dressing for a casual day out,
+                  a formal event, or anything in between, our products offer the
+                  perfect balance of style and practicality.
                 </p>
 
                 {/* <div className="row">
