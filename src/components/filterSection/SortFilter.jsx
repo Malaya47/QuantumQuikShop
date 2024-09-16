@@ -16,7 +16,7 @@ const SortFilter = () => {
       <label className="form-check-label">
         <input
           onChange={handleSortByPrice}
-          className="form-check-input"
+          className="form-check-input me-1"
           type="radio"
           name="price"
           value="Low to High"
@@ -28,7 +28,7 @@ const SortFilter = () => {
       <label className="form-check-label">
         <input
           onChange={handleSortByPrice}
-          className="form-check-input"
+          className="form-check-input me-1"
           type="radio"
           name="price"
           value="High to Low"
