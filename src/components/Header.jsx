@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="navbar navbar-expand-lg navbar-light bg-dark text-light px-2 fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-dark  text-light px-2 fixed-top">
         <div className="container-fluid">
           <NavLink to="/" className="navbar-brand text-light">
             Shoppify

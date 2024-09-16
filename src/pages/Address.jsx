@@ -29,22 +29,33 @@ const Address = () => {
   };
 
   return (
-    <section className="align-self-center">
+    <section className="">
       <h4>Address Management</h4>
       <ul>
         {addresses.map((add) => (
           <li key={add.id}>
             {add.name}
-            <br />#{add.house} {add.city}, {add.state} ,{add.country},{" "}
+            <br />#{add.house} {add.city}, {add.state} ,{add.country}, -{" "}
             {add.postalCode}
             <br />
-            {add.number}
-            <button onClick={() => editHandler(add)}>Edit</button>
-            <button onClick={() => removeHandler(add.id)}>Remove</button>
+            Mobile Number: {add.number}
+            <br />
+            <button
+              className="btn btn-sm btn-dark me-2"
+              onClick={() => editHandler(add)}
+            >
+              Edit
+            </button>{" "}
+            <button
+              className="btn btn-sm btn-dark"
+              onClick={() => removeHandler(add.id)}
+            >
+              Remove
+            </button>
           </li>
         ))}
       </ul>
-      <button className="btn btn-primary" onClick={handleAddAddressClick}>
+      <button className="btn btn-dark" onClick={handleAddAddressClick}>
         Add new address
       </button>
 
@@ -64,14 +75,17 @@ const Address = () => {
                 </h5>
                 <button
                   type="button"
-                  className="close"
+                  className="close bg-dark border-0 rounded ms-3"
                   onClick={handleCloseModal}
                 >
-                  <span>&times;</span>
+                  <i className="text-light bi bi-x"></i>
                 </button>
               </div>
               <div className="modal-body text-light">
-                <AddressForm address={currentAddress} setShowModal={setShowModal} />
+                <AddressForm
+                  address={currentAddress}
+                  setShowModal={setShowModal}
+                />
               </div>
               <div className="modal-footer">
                 <button
