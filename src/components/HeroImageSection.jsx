@@ -5,7 +5,9 @@ import {
   emptyWomenArray,
   emptyKidsArray,
 } from "../features/filterSlice";
+
 import Carousel from "./Carousel";
+import ServiceSection from "./ServiceSection";
 
 const HeroImageSection = () => {
   const dispatch = useDispatch();
@@ -79,6 +81,7 @@ const HeroImageSection = () => {
           </div>
         </div>
       </section>
+      <ServiceSection />
     </div>
   );
 };
