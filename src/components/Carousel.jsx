@@ -9,7 +9,7 @@ const Carousel = () => {
         <div
           id="carouselExampleIndicators"
           data-bs-ride="carousel"
-          data-bs-interval="1000"
+          data-bs-interval="2000"
           className="carousel slide"
         >
           <div className="carousel-indicators">
