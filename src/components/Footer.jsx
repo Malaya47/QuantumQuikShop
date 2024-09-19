@@ -39,27 +39,36 @@ const Footer = () => {
               <h6 className="text-uppercase text-light mb-3">Shop</h6>
               <ul className="list-unstyled">
                 <li>
-                  <Link className="text-light" to={"/products/Women"}>
+                  <Link
+                    className="text-light text-decoration-none"
+                    to={"/products/Women"}
+                  >
                     For Women
                   </Link>
                 </li>
                 <li>
-                  <Link className="text-light" to={"/products/Men"}>
+                  <Link
+                    className="text-light text-decoration-none"
+                    to={"/products/Men"}
+                  >
                     For Men
                   </Link>
                 </li>
                 <li>
-                  <a className="text-light" href="#">
+                  <a className="text-light text-decoration-none" href="#">
                     Stores
                   </a>
                 </li>
                 <li>
-                  <a className="text-light" href="#">
+                  <a className="text-light text-decoration-none" href="#">
                     Our Blog
                   </a>
                 </li>
                 <li>
-                  <Link className="text-light" to={"/products/Women"}>
+                  <Link
+                    className="text-light text-decoration-none"
+                    to={"/products/Women"}
+                  >
                     Shop
                   </Link>
                 </li>
@@ -69,27 +78,33 @@ const Footer = () => {
               <h6 className="text-uppercase text-light mb-3">Company</h6>
               <ul className="list-unstyled">
                 <li>
-                  <Link className="text-light" to={"/login"}>
+                  <Link
+                    className="text-light text-decoration-none"
+                    to={"/login"}
+                  >
                     Login
                   </Link>
                 </li>
                 <li>
-                  <a className="text-light" href="#">
+                  <a className="text-light text-decoration-none" href="#">
                     Register
                   </a>
                 </li>
                 <li>
-                  <Link className="text-light" to={"/wishlist"}>
+                  <Link
+                    className="text-light text-decoration-none"
+                    to={"/wishlist"}
+                  >
                     Wishlist
                   </Link>
                 </li>
                 <li>
-                  <a className="text-light" href="#">
+                  <a className="text-light text-decoration-none" href="#">
                     Our Products
                   </a>
                 </li>
                 <li>
-                  <a className="text-light" href="#">
+                  <a className="text-light text-decoration-none" href="#">
                     Checkouts
                   </a>
                 </li>
@@ -118,6 +133,54 @@ const Footer = () => {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Copyright */}
+      <div class="py-4 bg-secondary text-light fw-light">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+              <p class="mb-md-0">© 2020 QuantumQuik. All rights reserved.</p>
+            </div>
+            <div class="col-md-6">
+              <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
+                <li class="list-inline-item">
+                  <a href="https://www.visa.co.in/" target="_blank">
+                    <img
+                      class="img-fluid"
+                      style={{ width: "2rem" }}
+                      src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/visa.svg"
+                      alt="Visa"
+                    />
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a
+                    href="https://www.mastercard.co.in/en-in.html"
+                    target="_blank"
+                  >
+                    <img
+                      class="img-fluid"
+                      style={{ width: "2rem" }}
+                      src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/mastercard.svg"
+                      alt="Mastercard"
+                    />
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://www.paypal.com/in/home" target="_blank">
+                    <img
+                      class="img-fluid"
+                      style={{ width: "2rem" }}
+                      src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/paypal.svg"
+                      alt="Paypal"
+                    />
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
