@@ -10,7 +10,6 @@ export default function App() {
     <main>
       <Header />
       <HeroImageSection />
-
       <Footer />
     </main>
   );

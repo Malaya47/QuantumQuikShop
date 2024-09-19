@@ -96,7 +96,7 @@ const Cart = () => {
                             <div className="row">
                               <div className="col-3">
                                 <img
-                                  src="https://rukminim2.flixcart.com/image/612/612/kx9as280/t-shirt/s/h/6/3xl-askpqrgfg68747-allen-solly-original-imag9r9ybh39hfeb.jpeg?q=70"
+                                  src={product.productImageURL}
                                   alt=""
                                   className="img-fluid rounded"
                                   style={{ height: "100px", width: "100px" }}

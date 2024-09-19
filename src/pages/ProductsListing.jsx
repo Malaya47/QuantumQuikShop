@@ -9,9 +9,9 @@ import {
   fetchMenProducts,
   fetchWomenProducts,
 } from "../features/filterSlice";
+import Footer from "../components/Footer";
 
 const ProductsListing = () => {
- 
   const dispatch = useDispatch();
   const paramsObject = useParams();
   const menProducts = useSelector((state) => state.filter.menProducts);
@@ -110,9 +110,12 @@ const ProductsListing = () => {
             </div>
           </div> */}
           <CardComponent finalProductsToView={finalProductView} />
-          
         </section>
       </section>
+
+      <footer className="mt-5">
+        <Footer />
+      </footer>
     </div>
   );
 };
