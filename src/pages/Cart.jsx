@@ -74,11 +74,14 @@ const Cart = () => {
       <Header />
       {cart && cart.length > 0 ? (
         <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-12">
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl text-center mt-5 py-4">
+          <div className="row justify-content-center mt-5">
+            <div className="col-12 py-4">
+              <h1 className="text-center text-uppercase display-2 mt-5 lato-bold">
                 Shopping Cart
               </h1>
+              <p className="text-center fs-5">
+                You have {cart.length} items in your shopping cart
+              </p>
               <div className="mt-12">
                 <div className="row">
                   <div className="col-12 col-lg-8">
@@ -86,9 +89,6 @@ const Cart = () => {
                       aria-labelledby="cart-heading"
                       className="bg-white rounded-lg p-4 mb-4"
                     >
-                      <h2 id="cart-heading" className="sr-only">
-                        Items in your shopping cart
-                      </h2>
                       <ul role="list" className="list-group list-group-flush">
                         {/* Items list to be mapped here */}
                         {cart.map((product) => (
@@ -140,7 +140,7 @@ const Cart = () => {
                                 </div>
                                 <div className="mt-4 d-flex align-items-start">
                                   <button
-                                    className="btn btn-danger"
+                                    className="btn btn-outline-danger"
                                     style={{ width: "158px" }}
                                     onClick={() =>
                                       removeFromCartHandler(product._id)
@@ -150,7 +150,7 @@ const Cart = () => {
                                   </button>
                                   <button
                                     onClick={() => handleAddToWishlist(product)}
-                                    className="btn btn-dark ms-3"
+                                    className="btn btn-outline-dark ms-3"
                                     style={{ width: "158px" }}
                                   >
                                     Move to Wishlist
