@@ -10,6 +10,7 @@ import {
   fetchWomenProducts,
 } from "../features/filterSlice";
 import Footer from "../components/Footer";
+import ServiceSection from "../components/ServiceSection";
 
 const ProductsListing = () => {
   const dispatch = useDispatch();
@@ -111,6 +112,10 @@ const ProductsListing = () => {
           </div> */}
           <CardComponent finalProductsToView={finalProductView} />
         </section>
+      </section>
+
+      <section className="mt-5">
+        <ServiceSection />
       </section>
 
       <footer className="mt-5">
