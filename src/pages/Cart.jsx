@@ -14,6 +14,9 @@ import {
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../components/Header";
+import ServiceSection from "../components/ServiceSection";
+import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -72,97 +75,104 @@ const Cart = () => {
     <>
       <ToastContainer theme="dark" autoClose={1000} />
       <Header />
-      {cart && cart.length > 0 ? (
-        <div className="container">
-          <div className="row justify-content-center mt-5">
-            <div className="col-12 py-4">
-              <h1 className="text-center text-uppercase display-2 mt-5 lato-bold">
-                Shopping Cart
-              </h1>
-              <p className="text-center fs-5">
-                You have {cart.length} items in your shopping cart
-              </p>
-              <div className="mt-12">
-                <div className="row">
-                  <div className="col-12 col-lg-8">
-                    <section
-                      aria-labelledby="cart-heading"
-                      className="bg-white rounded-lg p-4 mb-4"
-                    >
-                      <ul role="list" className="list-group list-group-flush">
-                        {/* Items list to be mapped here */}
-                        {cart.map((product) => (
-                          <li className="list-group-item py-6">
-                            <div className="row">
-                              <div className="col-3">
-                                <img
-                                  src={product.productImageURL}
-                                  alt=""
-                                  className="img-fluid rounded"
-                                  style={{ height: "100px", width: "100px" }}
-                                />
+
+      <div className="container">
+        <div className="row justify-content-center mt-5">
+          <div className="col-12 py-4 text-center">
+            <h1 className="text-uppercase display-2 mt-5 lato-bold">
+              Shopping Cart
+            </h1>
+            <p className="text-secondary mb-5 fs-5">
+              You have {cart.length} items in your shopping cart
+            </p>
+            {cart.length <= 0 && (
+              <Link to={"/"} className="btn btn-sm btn-outline-dark ">
+                Back to Home
+              </Link>
+            )}
+
+            <div className="">
+              <div className="row">
+                <div className="col-12 col-lg-8">
+                  <section
+                    aria-labelledby="cart-heading"
+                    className="bg-white rounded-lg p-4 mb-4"
+                  >
+                    <ul role="list" className="list-group list-group-flush">
+                      {/* Items list to be mapped here */}
+                      {cart.map((product) => (
+                        <li className="list-group-item py-6">
+                          <div className="row">
+                            <div className="col-3">
+                              <img
+                                src={product.productImageURL}
+                                alt=""
+                                className="img-fluid rounded"
+                                style={{ height: "100px", width: "100px" }}
+                              />
+                            </div>
+                            <div className="col-9">
+                              <h3 className="h5">
+                                <a
+                                  href="#"
+                                  className="text-black font-weight-bold"
+                                >
+                                  {product.productName}
+                                </a>
+                              </h3>
+                              <div className="d-flex align-items-center">
+                                <button
+                                  className="btn btn-light btn-sm"
+                                  onClick={() =>
+                                    decreaseQuantityHandler(
+                                      product._id,
+                                      product
+                                    )
+                                  }
+                                >
+                                  -
+                                </button>
+                                <span className="mx-1">
+                                  {product.quantity || 1}
+                                </span>
+                                <button
+                                  className="btn btn-light btn-sm"
+                                  onClick={() =>
+                                    increaseQuantityHandler(
+                                      product._id,
+                                      product
+                                    )
+                                  }
+                                >
+                                  +
+                                </button>
                               </div>
-                              <div className="col-9">
-                                <h3 className="h5">
-                                  <a
-                                    href="#"
-                                    className="text-black font-weight-bold"
-                                  >
-                                    {product.productName}
-                                  </a>
-                                </h3>
-                                <div className="d-flex align-items-center">
-                                  <button
-                                    className="btn btn-light btn-sm"
-                                    onClick={() =>
-                                      decreaseQuantityHandler(
-                                        product._id,
-                                        product
-                                      )
-                                    }
-                                  >
-                                    -
-                                  </button>
-                                  <span className="mx-1">
-                                    {product.quantity || 1}
-                                  </span>
-                                  <button
-                                    className="btn btn-light btn-sm"
-                                    onClick={() =>
-                                      increaseQuantityHandler(
-                                        product._id,
-                                        product
-                                      )
-                                    }
-                                  >
-                                    +
-                                  </button>
-                                </div>
-                                <div className="mt-4 d-flex align-items-start">
-                                  <button
-                                    className="btn btn-outline-danger"
-                                    style={{ width: "158px" }}
-                                    onClick={() =>
-                                      removeFromCartHandler(product._id)
-                                    }
-                                  >
-                                    Remove From Cart
-                                  </button>
-                                  <button
-                                    onClick={() => handleAddToWishlist(product)}
-                                    className="btn btn-outline-dark ms-3"
-                                    style={{ width: "158px" }}
-                                  >
-                                    Move to Wishlist
-                                  </button>
-                                </div>
+                              <div className="mt-4 d-flex align-items-start">
+                                <button
+                                  className="btn btn-outline-danger"
+                                  style={{ width: "158px" }}
+                                  onClick={() =>
+                                    removeFromCartHandler(product._id)
+                                  }
+                                >
+                                  Remove From Cart
+                                </button>
+                                <button
+                                  onClick={() => handleAddToWishlist(product)}
+                                  className="btn btn-outline-dark ms-3"
+                                  style={{ width: "158px" }}
+                                >
+                                  Move to Wishlist
+                                </button>
                               </div>
                             </div>
-                          </li>
-                        ))}
-                      </ul>
-                    </section>
-                  </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </section>
+                </div>
+                {cart && cart.length > 0 && (
                   <div className="col-12 col-lg-4">
                     <section
                       aria-labelledby="summary-heading"
@@ -215,16 +225,15 @@ const Cart = () => {
                       </div>
                     </section>
                   </div>
-                </div>
+                )}
               </div>
             </div>
           </div>
         </div>
-      ) : (
-        <h1 style={{ marginTop: "100px" }} className="text-center">
-          Your Cart is empty 😔!
-        </h1>
-      )}
+      </div>
+
+      <ServiceSection />
+      <Footer />
     </>
   );
 };
