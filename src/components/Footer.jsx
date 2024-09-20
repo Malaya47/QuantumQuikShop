@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="container">
           <div className="row">
             <div className="col-lg-4 mb-5 mb-lg-0">
-              <div className="fw-bold text-uppercase fs-4 text-light mb-3">
+              <div className="text-uppercase fs-4 text-light mb-3 lato-regular">
                 QuantumQuik Shop
               </div>
               <p>Fill your wardrobes with our signature styled clothes.</p>
