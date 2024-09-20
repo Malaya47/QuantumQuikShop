@@ -29,11 +29,31 @@ const HeroImageSection = () => {
     <div>
       <Carousel />
 
-      <section className="mt-5 mb-3">
-        <img
-          src="https://res.cloudinary.com/donqbxlnc/image/upload/v1648837512/fashify/01042022-D-Unisex-topbannercarousel-p3-brands-4090_bwk2pu.jpg"
-          className="img-fluid"
-        />
+      
+
+      <section class="bg-dark mt-5">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-6 text-white text-center  py-5">
+              <h2 class="display-4 text-uppercase mb-4">Final Sales</h2>
+              <p class="mb-0">Up to</p>
+              <h2 class="display-1 fw-bold mb-3">70%</h2>
+              <p class="mb-5">* Free shipping on orders over Rs 1000.</p>
+              <p>
+                <a class="btn btn-outline-light" href="#">
+                  Shop Now
+                </a>
+              </p>
+            </div>
+            <div
+              class="col-lg-6 d-flex align-items-center justify-content-center"
+              style={{
+                background: `url(https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/photo/serrah-galos-494279-unsplash-square.jpg) no-repeat right bottom`,
+                backgroundSize: "contain",
+              }}
+            ></div>
+          </div>
+        </div>
       </section>
 
       <section className=" mb-5 mt-5">

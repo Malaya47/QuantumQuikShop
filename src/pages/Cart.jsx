@@ -87,7 +87,7 @@ const Cart = () => {
             </p>
             {cart.length <= 0 && (
               <Link to={"/"} className="btn btn-sm btn-outline-dark ">
-                Back to Home
+               &#60; Back to Home
               </Link>
             )}
 
