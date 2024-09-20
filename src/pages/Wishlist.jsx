@@ -37,8 +37,8 @@ const Wishlist = () => {
           <div className="container py-5">
             <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
               {wishlist.map((product) => (
-                <div key={product._id} className="col">
-                  <div className="card h-100 border-0 shadow-sm">
+                <div key={product._id} className="col-md-6 col-lg-4">
+                  <div className="card h-100 border-0 shadow">
                     <Link to={`/productDetails/${product._id}`}>
                       <img
                         src={
@@ -66,16 +66,19 @@ const Wishlist = () => {
                       <button
                         onClick={() => handleAddToCart(product)}
                         type="button"
-                        className="btn btn-dark w-100"
+                        className="btn btn-outline-dark me-2"
                       >
-                        Add to Cart
+                        <i className="bi bi-cart"> Add to Cart</i>
                       </button>
                       <button
                         onClick={() => handleRemoveFromWishlist(product._id)}
                         type="button"
-                        className="btn btn-dark w-100 mt-1"
+                        className="btn btn-outline-dark"
                       >
-                        Remove from Wishlist
+                        <i className="bi bi-heart-fill">
+                          {" "}
+                          Remove from Wishlist
+                        </i>
                       </button>
                     </div>
                   </div>

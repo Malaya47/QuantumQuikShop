@@ -75,7 +75,7 @@ const CardComponent = ({ finalProductsToView }) => {
                   </div>
                 ))
             : finalProductsToView.map((product) => (
-                <div key={product._id} className="col">
+                <div key={product._id} className="col-md-6 col-lg-4">
                   <div className="card h-100 border-0 shadow">
                     <Link to={`/productDetails/${product._id}`}>
                       <img
@@ -103,25 +103,25 @@ const CardComponent = ({ finalProductsToView }) => {
                       </p>
 
                       {gotoCart[product._id] ? (
-                        <Link className="btn btn-dark w-100" to="/cart">
-                          Go to Cart
+                        <Link className="btn btn-outline-dark me-2" to="/cart">
+                          <i className="bi bi-cart"> Go to Cart</i>
                         </Link>
                       ) : (
                         <Link
                           onClick={() => handleAddToCart(product)}
                           type="button"
-                          className="btn btn-dark w-100"
+                          className="btn btn-outline-dark me-2"
                         >
-                          Add to Cart
+                          <i className="bi bi-cart"> Add to Cart</i>
                         </Link>
                       )}
 
                       <button
                         onClick={() => handleAddToWishlist(product)}
                         type="button"
-                        className="btn btn-outline-dark w-100 mt-1"
+                        className="btn btn-outline-dark"
                       >
-                        Add to Wishlist
+                        <i className="bi bi-heart-fill"> Add to Wishlist</i>
                       </button>
                     </div>
                   </div>
