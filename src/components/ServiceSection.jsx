@@ -14,7 +14,7 @@ const ServiceSection = () => {
                   Free shipping &amp; return
                 </h6>
                 <small className="text-muted fw-light text-sm mb-0">
-                  Free Shipping over $300
+                  Free Shipping over Rs 1000
                 </small>
               </div>
             </div>

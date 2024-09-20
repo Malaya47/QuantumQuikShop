@@ -44,7 +44,7 @@ const CardComponent = ({ finalProductsToView }) => {
             ? Array(4)
                 .fill(null)
                 .map((_, index) => (
-                  <div key={index} className="col">
+                  <div key={index} className="col-md-6 col-lg-4">
                     <div className="card h-100 border-0 shadow">
                       <div
                         className="card-img-top placeholder-glow"
