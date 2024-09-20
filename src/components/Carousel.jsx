@@ -1,7 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {
+  emptyMenArray,
+  emptyWomenArray,
+  emptyKidsArray,
+} from "../features/filterSlice";
+import { useDispatch } from "react-redux";
 
 const Carousel = () => {
+  const dispatch = useDispatch();
+  const carouselCategoryHandler = (e) => {
+    if (e.target.id === "Men") {
+      dispatch(emptyWomenArray([]));
+      dispatch(emptyKidsArray([]));
+    } else if (e.target.id === "Women") {
+      dispatch(emptyMenArray([]));
+      dispatch(emptyKidsArray([]));
+    } else if (e.target.id === "Kids") {
+      dispatch(emptyWomenArray([]));
+      dispatch(emptyMenArray([]));
+    }
+  };
   return (
     <>
       <section className="">
@@ -62,6 +81,8 @@ const Carousel = () => {
                         <Link
                           to={"/products/Men"}
                           className="btn btn-outline-dark text-uppercase"
+                          id="Men"
+                          onClick={carouselCategoryHandler}
                         >
                           View Men collection
                         </Link>
@@ -99,6 +120,8 @@ const Carousel = () => {
                         <Link
                           to={"/products/Women"}
                           className="btn btn-outline-dark text-uppercase"
+                          id="Women"
+                          onClick={carouselCategoryHandler}
                         >
                           View women collection
                         </Link>
@@ -132,6 +155,8 @@ const Carousel = () => {
                         <Link
                           to={"/products/Kids"}
                           className="btn btn-outline-dark text-uppercase"
+                          id="Kids"
+                          onClick={carouselCategoryHandler}
                         >
                           View kids collection
                         </Link>

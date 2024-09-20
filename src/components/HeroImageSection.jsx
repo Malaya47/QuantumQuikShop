@@ -11,6 +11,7 @@ import ServiceSection from "./ServiceSection";
 
 const HeroImageSection = () => {
   const dispatch = useDispatch();
+
   const categoryHandler = (e) => {
     if (e.target.id === "Men") {
       dispatch(emptyWomenArray([]));
