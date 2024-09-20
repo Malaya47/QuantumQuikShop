@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect } from "react";
+
 import Header from "./components/Header";
 import HeroImageSection from "./components/HeroImageSection";
 // import NewArrivalsSection from "./components/NewArrivalsSection";
