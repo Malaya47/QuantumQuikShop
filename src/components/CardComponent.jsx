@@ -83,7 +83,6 @@ const CardComponent = ({ finalProductsToView }) => {
                         className="card-img-top rounded-top"
                         alt="Nike Airmax v2"
                         style={{ height: "340px", objectFit: "cover" }}
-                        onClick={() => handleAddToWishlist(product)}
                       />
                     </Link>
 

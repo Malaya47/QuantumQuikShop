@@ -5,6 +5,8 @@ import {
   addToWishlist,
   addToCart,
 } from "../features/filterSlice";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
 
@@ -19,11 +21,13 @@ const ProductDetails = () => {
   const handleAddToWishlist = (product) => {
     // dispatch action to add it in wishlist array
     dispatch(addToWishlist(product));
+    toast.success("Product added to wishlist");
   };
 
   const handleAddToCart = (product) => {
     // dispatch action to add it in cart array
     dispatch(addToCart({ ...product, quantity: 1 }));
+    toast.success("Product added to cart");
   };
 
   useEffect(() => {
@@ -32,21 +36,18 @@ const ProductDetails = () => {
 
   return (
     <section>
+      <ToastContainer theme="dark" autoClose={1000} />
+
       <Header />
       <section className="mt-5 pt-5">
         <div className="container">
           <div className="row gx-5">
             <aside className="col-lg-6">
-              <div className="border rounded-4 mb-3 d-flex justify-content-center">
+              <div className="mb-3 d-flex justify-content-center">
                 <img
-                  style={{
-                    maxWidth: "100%",
-                    maxHeight: "100vh",
-                    margin: "auto",
-                  }}
-                  className="rounded-4 fit"
+                  className=""
                   src={product.productImageURL}
-                  alt="Main product"
+                  alt={product.productName}
                 />
               </div>
               {/* Multiple product images Div */}
@@ -80,23 +81,25 @@ const ProductDetails = () => {
             </aside>
             <main className="col-lg-6">
               <div className="ps-lg-3">
-                <h4 className="title text-dark">{product.productName}</h4>
+                <h4 className="text-dark lato-bold fs-3">
+                  {product.productName}
+                </h4>
                 <div className="d-flex flex-row my-3">
                   <div className="text-warning mb-1 me-2">
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fa fa-star"></i>
-                    <i className="fas fa-star-half-alt"></i>
                     <span className="ms-1">
                       {" "}
-                      Rating {product.productRating}{" "}
+                      {product.productRating && (
+                        <span>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star-fill"></i>
+                          <i class="bi bi-star"></i>
+                        </span>
+                      )}{" "}
                     </span>
                   </div>
-                  <span className="text-muted">
-                    <i className="fas fa-shopping-basket fa-sm mx-1"></i>154
-                    orders
-                  </span>
+                  <span className="text-muted">154 orders</span>
                   <span className="text-success ms-2">In stock</span>
                 </div>
 
@@ -104,7 +107,7 @@ const ProductDetails = () => {
                   <span className="h5">&#8377; {product.productPrice}</span>
                 </div>
 
-                <p>
+                <p className="lato-regular">
                   Step into a world of timeless elegance and modern
                   sophistication with our latest collection. Designed for those
                   who appreciate both form and function, our range offers a
@@ -115,7 +118,7 @@ const ProductDetails = () => {
                   comfort.
                 </p>
 
-                <p>
+                <p className="lato-regular">
                   Our collection is inspired by the latest trends, yet remains
                   rooted in classic design principles, making it versatile
                   enough to complement any wardrobe. From everyday essentials
@@ -188,16 +191,16 @@ const ProductDetails = () => {
                 </div> */}
                 <button
                   onClick={() => handleAddToWishlist(product)}
-                  className="btn btn-dark shadow-0 me-3"
+                  className="btn btn-lg btn-outline-dark shadow-0 me-3"
                 >
                   {" "}
-                  Add to wishlist{" "}
+                  <i className="bi bi-heart-fill"></i> Add to wishlist{" "}
                 </button>
                 <button
                   onClick={() => handleAddToCart(product)}
-                  className="btn btn-dark shadow-0"
+                  className="btn btn-lg btn-outline-dark shadow-0"
                 >
-                  Add to cart
+                  <i className="bi bi-cart"> Add to cart</i>
                 </button>
               </div>
             </main>

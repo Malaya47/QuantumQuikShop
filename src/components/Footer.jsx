@@ -143,7 +143,7 @@ const Footer = () => {
         <div class="container">
           <div class="row align-items-center">
             <div class="col-md-6 text-center text-md-start">
-              <p class="mb-md-0">© 2020 QuantumQuik. All rights reserved.</p>
+              <p class="mb-md-0">© 2024 QuantumQuik. All rights reserved.</p>
             </div>
             <div class="col-md-6">
               <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
