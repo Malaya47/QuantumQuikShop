@@ -29,8 +29,6 @@ const HeroImageSection = () => {
     <div>
       <Carousel />
 
-      
-
       <section class="bg-dark mt-5">
         <div class="container">
           <div class="row">

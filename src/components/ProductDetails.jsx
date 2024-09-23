@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import {
   fetchProductDetails,
@@ -9,6 +9,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
+import ServiceSection from "./ServiceSection";
+import Footer from "./Footer";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -30,6 +32,11 @@ const ProductDetails = () => {
     toast.success("Product added to cart");
   };
 
+  const ReviewFormSubmitHandler = (e) => {
+    e.preventDefault();
+    console.log("submitted");
+  };
+
   useEffect(() => {
     dispatch(fetchProductDetails(paramsObject.id));
   }, []);
@@ -40,47 +47,19 @@ const ProductDetails = () => {
 
       <Header />
       <section className="mt-5 pt-5">
-        <div className="container">
-          <div className="row gx-5">
-            <aside className="col-lg-6">
+        <div className="mx-3">
+          <div className="row">
+            <aside className="col-lg-5 col-xs-6">
               <div className="mb-3 d-flex justify-content-center">
                 <img
-                  className=""
+                  className="img-fluid"
                   src={product.productImageURL}
                   alt={product.productName}
                 />
               </div>
-              {/* Multiple product images Div */}
-              {/* <div className="d-flex justify-content-center mb-3">
-                {[
-                  "big1.webp",
-                  "big2.webp",
-                  "big3.webp",
-                  "big4.webp",
-                  "big.webp",
-                ].map((img, index) => (
-                  <a
-                    key={index}
-                    data-fslightbox="mygalley"
-                    className="border mx-1 rounded-2 item-thumb"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-type="image"
-                    href={`https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/${img}`}
-                  >
-                    <img
-                      width="60"
-                      height="60"
-                      className="rounded-2"
-                      src={`https://mdbcdn.b-cdn.net/img/bootstrap-ecommerce/items/detail1/${img}`}
-                      alt={`Thumbnail ${index + 1}`}
-                    />
-                  </a>
-                ))}
-              </div> */}
             </aside>
-            <main className="col-lg-6">
-              <div className="ps-lg-3">
+            <main className="col-lg-6 col-xs-6">
+              <div className="">
                 <h4 className="text-dark lato-bold fs-3">
                   {product.productName}
                 </h4>
@@ -107,7 +86,7 @@ const ProductDetails = () => {
                   <span className="h5">&#8377; {product.productPrice}</span>
                 </div>
 
-                <p className="lato-regular">
+                <p className="lato-light">
                   Step into a world of timeless elegance and modern
                   sophistication with our latest collection. Designed for those
                   who appreciate both form and function, our range offers a
@@ -118,7 +97,7 @@ const ProductDetails = () => {
                   comfort.
                 </p>
 
-                <p className="lato-regular">
+                <p className="lato-light">
                   Our collection is inspired by the latest trends, yet remains
                   rooted in classic design principles, making it versatile
                   enough to complement any wardrobe. From everyday essentials
@@ -128,85 +107,32 @@ const ProductDetails = () => {
                   a formal event, or anything in between, our products offer the
                   perfect balance of style and practicality.
                 </p>
-
-                {/* <div className="row">
-                  <dt className="col-3">Type:</dt>
-                  <dd className="col-9">Regular</dd>
-
-                  <dt className="col-3">Color</dt>
-                  <dd className="col-9">Brown</dd>
-
-                  <dt className="col-3">Material</dt>
-                  <dd className="col-9">Cotton, Jeans</dd>
-
-                  <dt className="col-3">Brand</dt>
-                  <dd className="col-9">Reebook</dd>
-                </div> */}
-
-                <hr />
-
-                {/* <div className="row mb-4">
-                  <div className="col-md-4 col-6">
-                    <label className="mb-2">Size</label>
-                    <select
-                      className="form-select border border-secondary"
-                      style={{ height: "35px" }}
+                <div className="row justify-content-start">
+                  <div className="col-auto">
+                    <button
+                      onClick={() => handleAddToWishlist(product)}
+                      className="btn btn-lg btn-outline-dark shadow-0"
                     >
-                      <option>Small</option>
-                      <option>Medium</option>
-                      <option>Large</option>
-                    </select>
+                      <i className="bi bi-heart-fill"></i> Add to wishlist
+                    </button>
                   </div>
-                  <div className="col-md-4 col-6 mb-3">
-                    <label className="mb-2 d-block">Quantity</label>
-                    <div
-                      className="input-group mb-3"
-                      style={{ width: "170px" }}
+                  <div className="col-auto">
+                    <button
+                      onClick={() => handleAddToCart(product)}
+                      className="btn btn-lg btn-outline-dark shadow-0"
                     >
-                      <button
-                        className="btn btn-white border border-secondary px-3"
-                        type="button"
-                        id="button-addon1"
-                        data-mdb-ripple-color="dark"
-                      >
-                        <i className="fas fa-minus"></i>
-                      </button>
-                      <input
-                        type="text"
-                        className="form-control text-center border border-secondary"
-                        placeholder="14"
-                        aria-label="Example text with button addon"
-                        aria-describedby="button-addon1"
-                      />
-                      <button
-                        className="btn btn-white border border-secondary px-3"
-                        type="button"
-                        id="button-addon2"
-                        data-mdb-ripple-color="dark"
-                      >
-                        <i className="fas fa-plus"></i>
-                      </button>
-                    </div>
+                      <i className="bi bi-cart"> Add to cart</i>
+                    </button>
                   </div>
-                </div> */}
-                <button
-                  onClick={() => handleAddToWishlist(product)}
-                  className="btn btn-lg btn-outline-dark shadow-0 me-3"
-                >
-                  {" "}
-                  <i className="bi bi-heart-fill"></i> Add to wishlist{" "}
-                </button>
-                <button
-                  onClick={() => handleAddToCart(product)}
-                  className="btn btn-lg btn-outline-dark shadow-0"
-                >
-                  <i className="bi bi-cart"> Add to cart</i>
-                </button>
+                </div>
               </div>
             </main>
           </div>
         </div>
       </section>
+
+      <ServiceSection />
+      <Footer />
     </section>
   );
 };
