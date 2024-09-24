@@ -107,7 +107,7 @@ const ProductDetails = () => {
                   a formal event, or anything in between, our products offer the
                   perfect balance of style and practicality.
                 </p>
-                <div className="row justify-content-start">
+                <div className="row justify-content-start mt-4">
                   <div className="col-auto">
                     <button
                       onClick={() => handleAddToWishlist(product)}
