@@ -44,7 +44,7 @@ const Wishlist = () => {
         )}
       </div>
 
-      <div className="container py-5">
+      <div className="container mb-5">
         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
           {wishlist.map((product) => (
             <div key={product._id} className="col-md-6 col-lg-4">
