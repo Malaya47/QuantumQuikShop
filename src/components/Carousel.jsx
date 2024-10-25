@@ -59,7 +59,7 @@ const Carousel = () => {
               style={{
                 height: "670px",
                 background:
-                  "url(https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/slider/circle-slider-2.jpg) no-repeat right bottom",
+                  "url(https://res.cloudinary.com/dlrlwy7hg/image/upload/q_auto,f_auto/v1722769196/circle-slider-1_oe2emx.jpg) no-repeat right bottom",
               }}
             >
               <div className="d-flex align-items-end h-100 text-white p-5 bg-dark bg-opacity-50">
@@ -97,7 +97,7 @@ const Carousel = () => {
               style={{
                 height: "670px",
                 background:
-                  "url(https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/slider/circle-slider-1.jpg) no-repeat right bottom",
+                  "url(https://res.cloudinary.com/dlrlwy7hg/image/upload/q_auto,f_auto/v1722769196/circle-slider-3_mewyfg.jpg) no-repeat right bottom",
               }}
             >
               <div className="d-flex align-items-end h-100 text-white p-5 bg-dark bg-opacity-50">
@@ -136,7 +136,7 @@ const Carousel = () => {
               style={{
                 height: "670px",
                 background:
-                  "url(https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/slider/circle-slider-3.jpg) no-repeat right bottom",
+                  "url(https://res.cloudinary.com/dlrlwy7hg/image/upload/q_auto,f_auto/v1722769196/circle-slider-2_vty8mf.jpg) no-repeat right bottom",
               }}
             >
               <div className="d-flex align-items-end h-100 text-white p-5 bg-dark bg-opacity-50">

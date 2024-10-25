@@ -46,7 +46,7 @@ const HeroImageSection = () => {
             <div
               class="col-lg-6 d-flex align-items-center justify-content-center"
               style={{
-                background: `url(https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/photo/serrah-galos-494279-unsplash-square.jpg) no-repeat right bottom`,
+                background: `url(https://res.cloudinary.com/dt01fsrbz/image/upload/serrah-galos-494279-unsplash-square_irnatj.jpg) no-repeat right bottom`,
                 backgroundSize: "contain",
               }}
             ></div>

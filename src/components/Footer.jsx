@@ -146,7 +146,7 @@ const Footer = () => {
               <p class="mb-md-0">© 2024 QuantumQuik. All rights reserved.</p>
             </div>
             <div class="col-md-6">
-              <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end">
+              <ul class="list-inline mb-0 mt-2 mt-md-0 text-center text-md-end text-dark">
                 <li class="list-inline-item">
                   <a href="https://www.visa.co.in/" target="_blank">
                     <img
