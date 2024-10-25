@@ -186,7 +186,7 @@ const initialState = {
   error: null,
   selectedCategory: [],
   selectedRating: null,
-  selectedPrice: 1000,
+  selectedPrice: 2000,
   selectedSort: null,
   searchKeyWord: "",
   gotoCart: {},
