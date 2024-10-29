@@ -12,31 +12,56 @@ import ProductDetails from "./components/ProductDetails";
 import Cart from "./pages/Cart";
 import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
+import ScrollToTopWrapper from "./components/ScrollToTopWrapper";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <ScrollToTopWrapper>
+        <App />
+      </ScrollToTopWrapper>
+    ),
   },
   {
     path: "/products/:category",
-    element: <ProductsListing />,
+    element: (
+      <ScrollToTopWrapper>
+        <ProductsListing />
+      </ScrollToTopWrapper>
+    ),
   },
   {
     path: "/productDetails/:id",
-    element: <ProductDetails />,
+    element: (
+      <ScrollToTopWrapper>
+        <ProductDetails />
+      </ScrollToTopWrapper>
+    ),
   },
   {
     path: "/cart",
-    element: <Cart />,
+    element: (
+      <ScrollToTopWrapper>
+        <Cart />
+      </ScrollToTopWrapper>
+    ),
   },
   {
     path: "/wishlist",
-    element: <Wishlist />,
+    element: (
+      <ScrollToTopWrapper>
+        <Wishlist />
+      </ScrollToTopWrapper>
+    ),
   },
   {
     path: "/login",
-    element: <Login />,
+    element: (
+      <ScrollToTopWrapper>
+        <Login />
+      </ScrollToTopWrapper>
+    ),
   },
 ]);
 
