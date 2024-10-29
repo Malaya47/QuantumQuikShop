@@ -1,13 +1,12 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
-
 import axios from "axios";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const fetchProductDetails = createAsyncThunk(
   "products/fetchProductDetails",
   async (productId) => {
-    const response = await axios.get(
-      `https://major-project-one-backend.vercel.app/productDetails/${productId}`
-    );
+    const response = await axios.get(`${API_URL}/productDetails/${productId}`);
 
     return response.data.product;
   }
