@@ -68,6 +68,8 @@ const Cart = () => {
     // dispatch action to add it in wishlist array
     dispatch(addToWishlist({ ...product, quantity: 1 }));
     dispatch(postProductInWishlist(product));
+    dispatch(removeFromCart(product._id));
+    dispatch(deleteCartItem(product._id));
     toast.success("Product added to wishlist");
   };
 
@@ -87,7 +89,7 @@ const Cart = () => {
             </p>
             {cart.length <= 0 && (
               <Link to={"/"} className="btn btn-sm btn-outline-dark ">
-               &#60; Back to Home
+                &#60; Back to Home
               </Link>
             )}
 
