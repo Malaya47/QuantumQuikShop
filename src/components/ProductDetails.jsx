@@ -67,7 +67,7 @@ const ProductDetails = () => {
                   <div className="text-warning mb-1 me-2">
                     <span className="ms-1">
                       {" "}
-                      {product.productRating && (
+                      {product?.productRating && (
                         <span>
                           <i class="bi bi-star-fill"></i>
                           <i class="bi bi-star-fill"></i>
@@ -83,7 +83,7 @@ const ProductDetails = () => {
                 </div>
 
                 <div className="mb-3">
-                  <span className="h5">&#8377; {product.productPrice}</span>
+                  <span className="h5">&#8377; {product?.productPrice}</span>
                 </div>
 
                 <p className="lato-light">
