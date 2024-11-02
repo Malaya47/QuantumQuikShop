@@ -53,15 +53,15 @@ const ProductDetails = () => {
               <div className="mb-3 d-flex justify-content-center">
                 <img
                   className="img-fluid"
-                  src={product.productImageURL}
-                  alt={product.productName}
+                  src={product?.productImageURL}
+                  alt={product?.productName}
                 />
               </div>
             </aside>
             <main className="col-lg-6 col-xs-6">
               <div className="">
                 <h4 className="text-dark lato-bold fs-3">
-                  {product.productName}
+                  {product?.productName}
                 </h4>
                 <div className="d-flex flex-row my-3">
                   <div className="text-warning mb-1 me-2">
