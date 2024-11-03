@@ -11,8 +11,10 @@ import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
 import ServiceSection from "./ServiceSection";
 import Footer from "./Footer";
+import { useNavigate } from "react-router-dom";
 
 const ProductDetails = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const paramsObject = useParams();
   // console.log(paramsObject.id);
@@ -22,6 +24,7 @@ const ProductDetails = () => {
 
   const handleAddToWishlist = (product) => {
     // dispatch action to add it in wishlist array
+
     dispatch(addToWishlist(product));
     toast.success("Product added to wishlist");
   };

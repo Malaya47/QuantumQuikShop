@@ -366,7 +366,7 @@ export const filterSlice = createSlice({
     });
     builder.addCase(fetchWomenProducts.rejected, (state, action) => {
       state.status = "error";
-      console.log(action);
+      
     });
     // for Kids products
     builder.addCase(fetchKidsProducts.pending, (state) => {
@@ -460,7 +460,9 @@ export const filterSlice = createSlice({
     });
     builder.addCase(generateToken.fulfilled, (state, action) => {
       state.status = "Success";
-      state.loginToken = action.payload.token;
+      // state.loginToken = action.payload.token;
+      localStorage.setItem("admin-token", action.payload.token);
+      
     });
     builder.addCase(generateToken.rejected, (state, action) => {
       state.status = "error";

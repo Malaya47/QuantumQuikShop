@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import { Link } from "react-router-dom";
 import { generateToken } from "../features/filterSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,10 @@ const Login = () => {
   const loginHandler = (e) => {
     e.preventDefault();
     dispatch(generateToken(userDetails));
+    setUserDetails({
+      password: "",
+      email: "",
+    });
   };
 
   return (
