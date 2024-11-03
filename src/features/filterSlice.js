@@ -334,7 +334,7 @@ export const filterSlice = createSlice({
       state.menProducts = action.payload;
 
       // Filter out already existing products in the state.products array
-      const newProducts = action.payload?.filter(
+      const newProducts = action?.payload?.filter(
         (newProduct) =>
           !state.products.some((product) => product._id === newProduct._id)
       );
