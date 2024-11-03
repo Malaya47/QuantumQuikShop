@@ -214,7 +214,6 @@ export const filterSlice = createSlice({
 
     getSelectedPrice: (state, action) => {
       state.selectedPrice = action.payload;
-      console.log(current(state));
     },
     getSelectedSort: (state, action) => {
       state.selectedSort = action.payload;
@@ -356,7 +355,7 @@ export const filterSlice = createSlice({
       state.womenProducts = action.payload;
 
       // Filter out already existing products in the state.products array
-      const newProducts = action.payload.filter(
+      const newProducts = action.payload?.filter(
         (newProduct) =>
           !state.products.some((product) => product._id === newProduct._id)
       );
@@ -366,7 +365,6 @@ export const filterSlice = createSlice({
     });
     builder.addCase(fetchWomenProducts.rejected, (state, action) => {
       state.status = "error";
-      
     });
     // for Kids products
     builder.addCase(fetchKidsProducts.pending, (state) => {
@@ -462,7 +460,6 @@ export const filterSlice = createSlice({
       state.status = "Success";
       // state.loginToken = action.payload.token;
       localStorage.setItem("admin-token", action.payload.token);
-      
     });
     builder.addCase(generateToken.rejected, (state, action) => {
       state.status = "error";
