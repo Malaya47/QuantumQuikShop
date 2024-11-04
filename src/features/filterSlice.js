@@ -51,6 +51,7 @@ export const postProductInCart = createAsyncThunk(
       {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `${localStorage.getItem("admin-token")}`,
         },
       }
     );
@@ -101,6 +102,7 @@ export const postProductInWishlist = createAsyncThunk(
       {
         headers: {
           "Content-Type": "application/json",
+          Authorization: `${localStorage.getItem("admin-token")}`,
         },
       }
     );
@@ -171,8 +173,21 @@ export const generateToken = createAsyncThunk(
   }
 );
 
+export const signUpUser = createAsyncThunk(
+  "signUp/user",
+  async (userDetails) => {
+    const response = await axios.post(`${API_URL}/register`, userDetails, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return response.data;
+  }
+);
+
 const initialState = {
-  loginToken: "",
+  token: localStorage.getItem("admin-token") || null,
   productDetail: {},
   products: [],
   menProducts: [],
@@ -385,7 +400,6 @@ export const filterSlice = createSlice({
     });
     builder.addCase(fetchKidsProducts.rejected, (state, action) => {
       state.status = "error";
-      console.log(action);
     });
 
     // cases for adding data in cart database
@@ -458,11 +472,21 @@ export const filterSlice = createSlice({
     });
     builder.addCase(generateToken.fulfilled, (state, action) => {
       state.status = "Success";
-      // state.loginToken = action.payload.token;
+
+      state.token = action.payload.token;
       localStorage.setItem("admin-token", action.payload.token);
     });
     builder.addCase(generateToken.rejected, (state, action) => {
-      state.status = "error";
+      state.error = "error";
+    });
+    builder.addCase(signUpUser.pending, (state, action) => {
+      state.status = "Loading";
+    });
+    builder.addCase(signUpUser.fulfilled, (state, action) => {
+      state.status = "Success";
+    });
+    builder.addCase(signUpUser.rejected, (state, action) => {
+      state.error = "error";
     });
   },
 });

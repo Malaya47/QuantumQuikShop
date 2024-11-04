@@ -10,8 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CardComponent = ({ finalProductsToView }) => {
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const gotoCart = useSelector((state) => state.filter.gotoCart);
@@ -23,16 +25,26 @@ const CardComponent = ({ finalProductsToView }) => {
   }, [finalProductsToView]);
 
   const handleAddToCart = (product) => {
-    dispatch(addToCart({ ...product, quantity: 1 }));
-    dispatch(postProductInCart({ ...product, quantity: 1 }));
-    toast.success("Product added to cart");
-    dispatch(gotoCartToggle({ [product._id]: true }));
+    const token = localStorage.getItem("admin-token");
+    if (!token) {
+      navigate("/login");
+    } else {
+      dispatch(addToCart({ ...product, quantity: 1 }));
+      dispatch(postProductInCart({ ...product, quantity: 1 }));
+      toast.success("Product added to cart");
+      dispatch(gotoCartToggle({ [product._id]: true }));
+    }
   };
 
   const handleAddToWishlist = (product) => {
-    dispatch(addToWishlist(product));
-    dispatch(postProductInWishlist(product));
-    toast.success("Product added to wishlist");
+    const token = localStorage.getItem("admin-token");
+    if (!token) {
+      navigate("/login");
+    } else {
+      dispatch(addToWishlist(product));
+      dispatch(postProductInWishlist(product));
+      toast.success("Product added to wishlist");
+    }
   };
 
   return (

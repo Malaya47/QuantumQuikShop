@@ -57,7 +57,12 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className="nav-item ms-3">
-                <NavLink className="nav-link text-light" to="/wishlist">
+                <NavLink
+                  className="nav-link text-light"
+                  to={`${
+                    localStorage.getItem("admin-token") ? "/wishlist" : "/login"
+                  }`}
+                >
                   <i className="bi bi-heart fs-5 position-relative">
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {wishlist.length}
@@ -66,7 +71,12 @@ const Header = () => {
                 </NavLink>
               </li>
               <li className="nav-item ms-3">
-                <NavLink className="nav-link text-light" to="/cart">
+                <NavLink
+                  className="nav-link text-light"
+                  to={`${
+                    localStorage.getItem("admin-token") ? "/cart" : "/login"
+                  }`}
+                >
                   <i className="bi bi-bag fs-5 position-relative">
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                       {cart.length}
