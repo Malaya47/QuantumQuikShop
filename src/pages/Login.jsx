@@ -42,11 +42,7 @@ const Login = () => {
     setIsLoggedIn(!!token);
   }, [token]);
 
-  // useEffect(() => {
-  //   if (error) {
-  //     toast.error("Invalid credentials");
-  //   }
-  // }, [error]);
+  
 
   return (
     <>

@@ -168,6 +168,7 @@ const Footer = () => {
                       src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/mastercard.svg"
                       alt="Mastercard"
                     />
+                    
                   </a>
                 </li>
                 <li class="list-inline-item">
