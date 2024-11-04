@@ -4,6 +4,8 @@ import {
   fetchProductDetails,
   addToWishlist,
   addToCart,
+  postProductInCart,
+  gotoCartToggle,
 } from "../features/filterSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -17,22 +19,29 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const paramsObject = useParams();
-  // console.log(paramsObject.id);
 
   const product = useSelector((state) => state.filter.productDetail);
-  // console.log(product);
+  const token = useSelector((state) => state.filter.token);
 
   const handleAddToWishlist = (product) => {
-    // dispatch action to add it in wishlist array
-
-    dispatch(addToWishlist(product));
-    toast.success("Product added to wishlist");
+    if (!token) {
+      navigate("/login");
+    } else {
+      dispatch(addToWishlist(product));
+      dispatch(postProductInWishlist(product));
+      toast.success("Product added to wishlist");
+    }
   };
 
   const handleAddToCart = (product) => {
-    // dispatch action to add it in cart array
-    dispatch(addToCart({ ...product, quantity: 1 }));
-    toast.success("Product added to cart");
+    if (!token) {
+      navigate("/login");
+    } else {
+      dispatch(addToCart({ ...product, quantity: 1 }));
+      dispatch(postProductInCart({ ...product, quantity: 1 }));
+      toast.success("Product added to cart");
+      dispatch(gotoCartToggle({ [product._id]: true }));
+    }
   };
 
   const ReviewFormSubmitHandler = (e) => {

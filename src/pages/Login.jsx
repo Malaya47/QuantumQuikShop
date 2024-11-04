@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Address from "./Address";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
-import { generateToken } from "../features/filterSlice";
+import { generateToken, removeTokenFromRedux } from "../features/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 
@@ -34,6 +34,7 @@ const Login = () => {
 
   const logoutHandler = () => {
     localStorage.removeItem("admin-token");
+    dispatch(removeTokenFromRedux(null));
     setIsLoggedIn(false);
   };
 

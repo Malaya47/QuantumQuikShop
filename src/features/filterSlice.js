@@ -337,6 +337,9 @@ export const filterSlice = createSlice({
         (add) => add.id !== action.payload
       );
     },
+    removeTokenFromRedux: (state, action) => {
+      state.token = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProductDetails.pending, (state) => {
@@ -522,6 +525,7 @@ export const {
   addAddresses,
   updateAddress,
   removeAddress,
+  removeTokenFromRedux,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

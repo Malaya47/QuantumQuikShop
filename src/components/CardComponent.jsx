@@ -17,6 +17,7 @@ const CardComponent = ({ finalProductsToView }) => {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   const gotoCart = useSelector((state) => state.filter.gotoCart);
+  const token = useSelector((state) => state.filter.token);
 
   useEffect(() => {
     if (finalProductsToView.length > 0) {
@@ -25,7 +26,6 @@ const CardComponent = ({ finalProductsToView }) => {
   }, [finalProductsToView]);
 
   const handleAddToCart = (product) => {
-    const token = localStorage.getItem("admin-token");
     if (!token) {
       navigate("/login");
     } else {
@@ -37,7 +37,6 @@ const CardComponent = ({ finalProductsToView }) => {
   };
 
   const handleAddToWishlist = (product) => {
-    const token = localStorage.getItem("admin-token");
     if (!token) {
       navigate("/login");
     } else {
