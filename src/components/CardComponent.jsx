@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import {
-  addToCart,
-  addToWishlist,
-  postProductInCart,
-  postProductInWishlist,
-  gotoCartToggle,
-} from "../features/filterSlice";
+// import {
+//   addToCart,
+//   addToWishlist,
+//   postProductInCart,
+//   postProductInWishlist,
+//   gotoCartToggle,
+// } from "../features/filterSlice";
+import { addToCart, postProductInCart, gotoCartToggle } from "../features/cartSlice";
+import { addToWishlist, postProductInWishlist } from "../features/wishlistSlice";
 import { useDispatch, useSelector } from "react-redux";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -16,8 +18,8 @@ const CardComponent = ({ finalProductsToView }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
-  const gotoCart = useSelector((state) => state.filter.gotoCart);
-  const token = useSelector((state) => state.filter.token);
+  const gotoCart = useSelector((state) => state.cart.gotoCart);
+  const token = useSelector((state) => state.logInRegister.token);
 
   useEffect(() => {
     if (finalProductsToView.length > 0) {

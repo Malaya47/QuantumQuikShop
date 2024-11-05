@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import AddressForm from "../components/AddressForm";
 import { useSelector, useDispatch } from "react-redux";
-import { removeAddress, deleteAddress } from "../features/filterSlice";
+// import { removeAddress, deleteAddress } from "../features/filterSlice";
+import { removeAddress, deleteAddress } from "../features/logInRegisterSlice";
 
 const Address = () => {
   const dispatch = useDispatch();
-  const addresses = useSelector((state) => state.filter.addresses);
+  // const addresses = useSelector((state) => state.filter.addresses);
+  const addresses = useSelector((state) => state.logInRegister.addresses);
+
   const [showModal, setShowModal] = useState(false);
   const [currentAddress, setCurrentAddress] = useState(null); // To store the address being edited
 

@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addToCart,
-  removeFromWishList,
-  deleteWishlistItem,
-} from "../features/filterSlice";
+// import {
+//   addToCart,
+//   removeFromWishList,
+//   deleteWishlistItem,
+// } from "../features/filterSlice";
+import { addToCart } from "../features/cartSlice";
+import { removeFromWishList, deleteWishlistItem } from "../features/wishlistSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../components/Header";
@@ -13,7 +15,9 @@ import Footer from "../components/Footer";
 
 const Wishlist = () => {
   const dispatch = useDispatch();
-  const wishlist = useSelector((state) => state.filter.wishlist);
+  // const wishlist = useSelector((state) => state.filter.wishlist);
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+
 
   const handleAddToCart = (product) => {
     // Dispatch action to add it to the cart array

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addAddresses,
-  updateAddress,
-  addAddress,
-  updatedAddress,
-} from "../features/filterSlice";
+// import {
+//   addAddresses,
+//   updateAddress,
+//   addAddress,
+//   updatedAddress,
+// } from "../features/filterSlice";
+import { addAddress, updateAddress, updatedAddress } from "../features/logInRegisterSlice";
 import { v4 as uuidv4 } from "uuid"; // Import the UUID library
 
 const AddressForm = ({ address, setShowModal }) => {

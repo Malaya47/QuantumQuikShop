@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Header = () => {
   const dispatch = useDispatch();
-  const wishlist = useSelector((state) => state.filter.wishlist);
-  const cart = useSelector((state) => state.filter.cart.cartArray);
+  const wishlist = useSelector((state) => state.wishlist.wishlist);
+  const cart = useSelector((state) => state.cart.cart.cartArray);
   const searchHandler = (e) => {
     dispatch(searchProduct(e.target.value));
   };

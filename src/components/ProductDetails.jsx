@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import {
-  fetchProductDetails,
-  addToWishlist,
-  addToCart,
-  postProductInCart,
-  gotoCartToggle,
-} from "../features/filterSlice";
+// import {
+//   fetchProductDetails,
+//   addToWishlist,
+//   addToCart,
+//   postProductInCart,
+//   gotoCartToggle,
+// } from "../features/filterSlice";
+import { fetchProductDetails } from "../features/filterSlice";
+import { addToCart, postProductInCart, gotoCartToggle } from "../features/cartSlice";
+import { addToWishlist } from "../features/wishlistSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +24,7 @@ const ProductDetails = () => {
   const paramsObject = useParams();
 
   const product = useSelector((state) => state.filter.productDetail);
-  const token = useSelector((state) => state.filter.token);
+  const token = useSelector((state) => state.logInRegister.token);
 
   const handleAddToWishlist = (product) => {
     if (!token) {

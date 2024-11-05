@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  removeFromCart,
-  incrementQuantity,
-  decrementQuantity,
-  addToWishlist,
-  putIncreaseQuantity,
-  putDecreaseQuantity,
-  deleteCartItem,
-  postProductInWishlist,
-  gotoCartToggle,
-} from "../features/filterSlice";
+// import {
+//   removeFromCart,
+//   incrementQuantity,
+//   decrementQuantity,
+//   addToWishlist,
+//   putIncreaseQuantity,
+//   putDecreaseQuantity,
+//   deleteCartItem,
+//   postProductInWishlist,
+//   gotoCartToggle,
+// } from "../features/filterSlice";
+import { removeFromCart, incrementQuantity, decrementQuantity, putIncreaseQuantity, putDecreaseQuantity, deleteCartItem, gotoCartToggle} from "../features/cartSlice";
+import { addToWishlist, postProductInWishlist } from "../features/wishlistSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../components/Header";
@@ -20,7 +22,8 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.filter.cart.cartArray);
+  // const cart = useSelector((state) => state.filter.cart.cartArray);
+  const cart = useSelector((state) => state.cart.cart.cartArray);
 
   const decreaseQuantityHandler = (id, product) => {
     // Dispatch to decrease quantity of that product only

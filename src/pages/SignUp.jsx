@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
-import { signUpUser } from "../features/filterSlice";
+// import { signUpUser } from "../features/filterSlice";
+import { signUpUser } from "../features/logInRegisterSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 const SignUp = () => {

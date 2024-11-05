@@ -44,171 +44,16 @@ export const fetchKidsProducts = createAsyncThunk(
   }
 );
 
-export const postProductInCart = createAsyncThunk(
-  "products/addToCart",
-  async (product) => {
-    const response = await axios.post(
-      `https://major-project-one-backend.vercel.app/products/addToCart`,
-      product,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("admin-token")}`,
-        },
-      }
-    );
 
-    return response.data;
-  }
-);
-
-export const putIncreaseQuantity = createAsyncThunk(
-  "product/putIncrease",
-  async (product) => {
-    const response = axios.put(
-      `https://major-project-one-backend.vercel.app/product/updateQuantity/${product._id}`,
-      { ...product, quantity: product.quantity + 1 }
-    );
-    return response.data;
-  }
-);
-
-export const putDecreaseQuantity = createAsyncThunk(
-  "product/putDecrease",
-  async (product) => {
-    const response = axios.put(
-      `https://major-project-one-backend.vercel.app/product/updateQuantity/${product._id}`,
-      { ...product, quantity: product.quantity - 1 }
-    );
-    return response.data;
-  }
-);
-
-export const deleteCartItem = createAsyncThunk(
-  "product/deleteProduct",
-  async (id) => {
-    const response = await axios.delete(
-      `https://major-project-one-backend.vercel.app/product/deleteProduct/${id}`
-    );
-
-    return response.data;
-  }
-);
-
-export const postProductInWishlist = createAsyncThunk(
-  "products/addToWishlist",
-  async (product) => {
-    const response = await axios.post(
-      `https://major-project-one-backend.vercel.app/products/addToWishlist`,
-      product,
-      {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${localStorage.getItem("admin-token")}`,
-        },
-      }
-    );
-
-    return response.data;
-  }
-);
-
-export const deleteWishlistItem = createAsyncThunk(
-  "product/deleteWishlistProduct",
-  async (id) => {
-    const response = await axios.delete(
-      `https://major-project-one-backend.vercel.app/product/deleteProductWishlist/${id}`
-    );
-
-    return response.data;
-  }
-);
-
-// API requests for handling addresses
-export const addAddress = createAsyncThunk(
-  "address/addAddress",
-  async (address) => {
-    const response = await axios.post(
-      `https://major-project-one-backend.vercel.app/addresses/addAddress`,
-      address,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    return response.data;
-  }
-);
-
-export const updatedAddress = createAsyncThunk(
-  "address/updateAddress",
-  async (updatedAddress) => {
-    const response = await axios.put(
-      `https://major-project-one-backend.vercel.app/addresses/updateAddress/${updatedAddress.id}`,
-      updatedAddress
-    );
-    return response.data;
-  }
-);
-
-export const deleteAddress = createAsyncThunk(
-  "address/deleteAddress",
-  async (id) => {
-    const response = await axios.delete(
-      `https://major-project-one-backend.vercel.app/addresses/deleteAddress/${id}`
-    );
-    return response.data;
-  }
-);
-
-export const generateToken = createAsyncThunk(
-  "token/getToken",
-  async (userDetails) => {
-    const response = await axios.post(
-      `https://major-project-one-backend.vercel.app/login`,
-      userDetails,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    return response.data;
-  }
-);
-
-export const signUpUser = createAsyncThunk(
-  "signUp/user",
-  async (userDetails) => {
-    const response = await axios.post(
-      `https://major-project-one-backend.vercel.app/register`,
-      userDetails,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-
-    return response.data;
-  }
-);
 
 const initialState = {
-  token: localStorage.getItem("admin-token") || null,
+  
   productDetail: {},
   products: [],
   menProducts: [],
   womenProducts: [],
   kidsProducts: [],
   filteredProducts: null,
-  cart: {
-    cartArray: [],
-    cartQuantity: null,
-  },
-  wishlist: [],
   status: "idle",
   error: null,
   selectedCategory: [],
@@ -216,8 +61,6 @@ const initialState = {
   selectedPrice: 2000,
   selectedSort: null,
   searchKeyWord: "",
-  gotoCart: {},
-  addresses: [],
 };
 
 export const filterSlice = createSlice({
@@ -253,92 +96,11 @@ export const filterSlice = createSlice({
     emptyKidsArray: (state, action) => {
       state.kidsProducts = action.payload;
     },
-    addToCart: (state, action) => {
-      const itemPresent = state.cart.cartArray.find(
-        (item) => item._id === action.payload._id
-      );
-
-      if (itemPresent) {
-        itemPresent.quantity++;
-      } else {
-        state.cart.cartArray.push(action.payload);
-        // state.cart.cartArray = [...state.cart.cartArray, action.payload];
-      }
-    },
-    removeFromCart: (state, action) => {
-      const removeFromCart = state.cart.cartArray.filter(
-        (item) => item._id !== action.payload
-      );
-      state.cart.cartArray = removeFromCart;
-    },
-    incrementQuantity: (state, action) => {
-      const itemPresent = state.cart.cartArray.find(
-        (item) => item._id === action.payload
-      );
-
-      itemPresent.quantity++;
-    },
-    decrementQuantity: (state, action) => {
-      const itemPresent = state.cart.cartArray.find(
-        (item) => item._id === action.payload
-      );
-      if (itemPresent.quantity === 1) {
-        const removeFromCart = state.cart.cartArray.filter(
-          (item) => item._id !== action.payload
-        );
-        state.cart.cartArray = removeFromCart;
-      } else {
-        itemPresent.quantity--;
-      }
-    },
-    addToWishlist: (state, action) => {
-      const itemPresent = state.wishlist.find(
-        (item) => item._id === action.payload._id
-      );
-      if (itemPresent) {
-        return;
-      } else {
-        state.wishlist.push(action.payload);
-      }
-    },
-    removeFromWishList: (state, action) => {
-      const removeWishList = state.wishlist.filter(
-        (product) => product._id !== action.payload
-      );
-      state.wishlist = removeWishList;
-    },
     searchProduct: (state, action) => {
       state.searchKeyWord = action.payload;
     },
     heartIconToggler: (state, action) => {
       state.heartIcon = action.payload;
-    },
-    gotoCartToggle: (state, action) => {
-      state.gotoCart = { ...state.gotoCart, ...action.payload };
-    },
-    addAddresses: (state, action) => {
-      state.addresses = [...state.addresses, action.payload];
-    },
-    updateAddress: (state, action) => {
-      const addressIndex = state.addresses.findIndex(
-        (add) => add.id === action.payload.id
-      );
-
-      if (addressIndex !== -1) {
-        // Update the address at the found index with the new data
-        state.addresses[addressIndex] = {
-          ...state.addresses[addressIndex],
-          ...action.payload,
-        };
-      }
-    },
-    removeAddress: (state, action) => {
-      state.addresses = state.addresses.filter(
-        (add) => add.id !== action.payload
-      );
-    },
-    removeTokenFromRedux: (state, action) => {
-      state.token = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -415,92 +177,7 @@ export const filterSlice = createSlice({
       state.status = "error";
     });
 
-    // cases for adding data in cart database
-    builder.addCase(postProductInCart.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(postProductInCart.fulfilled, (state, action) => {
-      state.status = "Success";
-    });
-    builder.addCase(postProductInCart.rejected, (state, action) => {
-      state.status = "error";
-    });
-    // cart increaseQuantity put request
-    builder.addCase(putIncreaseQuantity.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(putIncreaseQuantity.fulfilled, (state, action) => {
-      state.status = "Success";
-    });
-    builder.addCase(putIncreaseQuantity.rejected, (state, action) => {
-      state.status = "error";
-    });
-    // cart decreaseQuantity put request
-    builder.addCase(putDecreaseQuantity.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(putDecreaseQuantity.fulfilled, (state, action) => {
-      state.status = "Success";
-    });
-    builder.addCase(putDecreaseQuantity.rejected, (state, action) => {
-      state.status = "error";
-    });
-
-    // delete cart item
-    builder.addCase(deleteCartItem.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(deleteCartItem.fulfilled, (state, action) => {
-      state.status = "Success";
-    });
-    builder.addCase(deleteCartItem.rejected, (state, action) => {
-      state.status = "error";
-    });
-
-    // for adddig data in wishlist
-    builder.addCase(postProductInWishlist.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(postProductInWishlist.fulfilled, (state, action) => {
-      state.status = "Success";
-    });
-    builder.addCase(postProductInWishlist.rejected, (state, action) => {
-      state.status = "error";
-    });
-
-    // for deleting wishlist item
-    builder.addCase(deleteWishlistItem.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(deleteWishlistItem.fulfilled, (state, action) => {
-      state.status = "Success";
-    });
-    builder.addCase(deleteWishlistItem.rejected, (state, action) => {
-      state.status = "error";
-    });
-
-    // for authentication
-    builder.addCase(generateToken.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(generateToken.fulfilled, (state, action) => {
-      state.status = "Success";
-
-      state.token = action.payload.token;
-      localStorage.setItem("admin-token", action.payload.token);
-    });
-    builder.addCase(generateToken.rejected, (state, action) => {
-      state.error = "error";
-    });
-    builder.addCase(signUpUser.pending, (state, action) => {
-      state.status = "Loading";
-    });
-    builder.addCase(signUpUser.fulfilled, (state, action) => {
-      state.status = "Success";
-    });
-    builder.addCase(signUpUser.rejected, (state, action) => {
-      state.error = "error";
-    });
+    
   },
 });
 
@@ -513,19 +190,8 @@ export const {
   emptyMenArray,
   emptyWomenArray,
   emptyKidsArray,
-  addToCart,
-  removeFromCart,
-  incrementQuantity,
-  decrementQuantity,
-  addToWishlist,
-  removeFromWishList,
   searchProduct,
   heartIconToggler,
-  gotoCartToggle,
-  addAddresses,
-  updateAddress,
-  removeAddress,
-  removeTokenFromRedux,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
