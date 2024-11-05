@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 
 // API requests for handling addresses
@@ -118,15 +119,17 @@ export const logInRegisterSlice = createSlice({
          // for authentication
     builder.addCase(generateToken.pending, (state, action) => {
       state.status = "Loading";
+     
     });
     builder.addCase(generateToken.fulfilled, (state, action) => {
       state.status = "Success";
-
+       
       state.token = action.payload.token;
       localStorage.setItem("admin-token", action.payload.token);
     });
     builder.addCase(generateToken.rejected, (state, action) => {
       state.error = "error";
+      
     });
     builder.addCase(signUpUser.pending, (state, action) => {
       state.status = "Loading";

@@ -11,7 +11,7 @@ const Login = () => {
   const dispatch = useDispatch();
   // const token = useSelector((state) => state.filter.token);
   const token = useSelector((state) => state.logInRegister.token);
-     console.log(token)
+  console.log(token)
 
   const [userDetails, setUserDetails] = useState({
     password: "",
@@ -27,6 +27,7 @@ const Login = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
+    
     dispatch(generateToken(userDetails));
     setUserDetails({
       password: "",
@@ -44,7 +45,7 @@ const Login = () => {
     setIsLoggedIn(!!token);
   }, [token]);
 
-  
+
 
   return (
     <>
