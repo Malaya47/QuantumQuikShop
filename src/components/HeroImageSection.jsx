@@ -14,12 +14,15 @@ const HeroImageSection = () => {
 
   const categoryHandler = (e) => {
     if (e.target.id === "Men") {
+      console.log("Men");
       dispatch(emptyWomenArray([]));
       dispatch(emptyKidsArray([]));
     } else if (e.target.id === "Women") {
+      console.log("Women");
       dispatch(emptyMenArray([]));
       dispatch(emptyKidsArray([]));
     } else if (e.target.id === "Kids") {
+      console.log("Kids");
       dispatch(emptyWomenArray([]));
       dispatch(emptyMenArray([]));
     }
@@ -29,7 +32,7 @@ const HeroImageSection = () => {
     <div>
       <Carousel />
 
-      <section class="bg-dark mt-5">
+      <section className="bg-dark mt-5">
         <div class="container">
           <div class="row">
             <div class="col-lg-6 text-white text-center  py-5">
@@ -54,49 +57,90 @@ const HeroImageSection = () => {
         </div>
       </section>
 
-      <section className=" mb-5 mt-5">
-        <div className="row">
-          <div className="col-md-4">
-            <Link to="/products/Men" className="text-decoration-none text-dark">
-              {" "}
-              <img
-                src="https://media.istockphoto.com/id/656673020/photo/handsome-in-spectacles.jpg?s=612x612&w=0&k=20&c=klIlcueGJlAnOehrIZNpvFrVT_olKKqhaVT77H5Fj-s="
-                className="rounded img-fluid"
-                id="Men"
-                onClick={categoryHandler}
-              />{" "}
-              <p className="text-center fs-4">Men</p>
-            </Link>
-          </div>
-          <div className="col-md-4">
-            <Link
-              to="/products/Women"
-              className="text-decoration-none text-dark"
+      <section className="mt-5 mb-5">
+        <div className="row gx-0">
+          {/* Women Card */}
+          <div
+            className="col-12 col-md-6 col-lg-4 d-flex flex-column"
+            style={{
+              backgroundImage:
+                "url(https://res.cloudinary.com/dt01fsrbz/image/upload/v1731771168/cover-1_gyptyp.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div
+              className="card text-white text-center bg-dark bg-opacity-50 d-flex flex-grow-1"
+              style={{ minHeight: "470px" }}
             >
-              {" "}
-              <img
-                src="https://media.istockphoto.com/id/888836942/photo/black-and-white-portrait-of-a-young-woman-laughing-looking-to-the-side-holding-hands-together.jpg?s=1024x1024&w=is&k=20&c=AgKfFDGybhHrrdL4xag6HH5tjQGJAohXZ4mBJvwkpbk="
-                className="rounded img-fluid"
-                id="Women"
-                onClick={categoryHandler}
-              />{" "}
-              <p className="text-center fs-4">Women</p>
-            </Link>
+              <div className="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                <h1 className="fw-bold mb-4">Women</h1>
+                <Link
+                  to={`/products/Women`}
+                  className="btn btn-light stretched-link"
+                  id="Women"
+                  onClick={(e) => categoryHandler(e)}
+                >
+                  Shop Women <i className="bi bi-arrow-right ms-2"></i>
+                </Link>
+              </div>
+            </div>
           </div>
-          <div className="col-md-4">
-            <Link
-              to="/products/Kids"
-              className="text-decoration-none text-dark"
+
+          {/* Men Card */}
+          <div
+            className="col-12 col-md-6 col-lg-4 d-flex flex-column"
+            style={{
+              backgroundImage:
+                "url(https://res.cloudinary.com/dt01fsrbz/image/upload/v1731771272/cover-2_iqnkxs.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div
+              className="card text-white text-center bg-dark bg-opacity-50 d-flex flex-grow-1"
+              style={{ minHeight: "470px" }}
             >
-              {" "}
-              <img
-                src="https://media.istockphoto.com/id/691139104/photo/black-and-white-portrait-of-a-happy-boy-and-girl.jpg?s=612x612&w=0&k=20&c=1StORgFPOO-ln_VcI50cKtQuZKB8rjHJl81Yu0d8xzU="
-                className="rounded img-fluid"
-                id="Kids"
-                onClick={categoryHandler}
-              />{" "}
-              <p className="text-center fs-4">Kids</p>
-            </Link>
+              <div className="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                <h1 className="fw-bold mb-4">Men</h1>
+                <Link
+                  to={`/products/Men`}
+                  className="btn btn-light stretched-link"
+                  id="Men"
+                  onClick={(e) => categoryHandler(e)}
+                >
+                  Shop Men <i className="bi bi-arrow-right ms-2"></i>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Kids Card */}
+          <div
+            className="col-12 col-md-6 col-lg-4 d-flex flex-column"
+            style={{
+              backgroundImage:
+                "url(https://res.cloudinary.com/dt01fsrbz/image/upload/v1731771323/cover-3_ffxofu.jpg)",
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }}
+          >
+            <div
+              className="card text-white text-center bg-dark bg-opacity-50 d-flex flex-grow-1"
+              style={{ minHeight: "470px" }}
+            >
+              <div className="card-body d-flex flex-column align-items-center justify-content-center py-5">
+                <h1 className="fw-bold mb-4">Kids</h1>
+                <Link
+                  to={`/products/Kids`}
+                  className="btn btn-light stretched-link"
+                  id="Kids"
+                  onClick={(e) => categoryHandler(e)}
+                >
+                  Shop Kids <i className="bi bi-arrow-right ms-2"></i>
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>

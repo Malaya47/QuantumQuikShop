@@ -152,7 +152,7 @@ const Footer = () => {
                     <img
                       class="img-fluid"
                       style={{ width: "2rem" }}
-                      src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/visa.svg"
+                      src="	https://yevgenysim-turkey.github.io/shopper/assets/img/payment/visa.svg"
                       alt="Visa"
                     />
                   </a>
@@ -165,10 +165,9 @@ const Footer = () => {
                     <img
                       class="img-fluid"
                       style={{ width: "2rem" }}
-                      src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/mastercard.svg"
+                      src="https://yevgenysim-turkey.github.io/shopper/assets/img/payment/mastercard.svg"
                       alt="Mastercard"
                     />
-                    
                   </a>
                 </li>
                 <li class="list-inline-item">
@@ -176,7 +175,7 @@ const Footer = () => {
                     <img
                       class="img-fluid"
                       style={{ width: "2rem" }}
-                      src="https://d19m59y37dris4.cloudfront.net/sell/2-0-1/img/paypal.svg"
+                      src="	https://yevgenysim-turkey.github.io/shopper/assets/img/payment/paypal.svg"
                       alt="Paypal"
                     />
                   </a>

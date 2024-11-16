@@ -12,7 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const dispatch = useDispatch();
-  // const token = useSelector((state) => state.filter.token);
+
   const token = useSelector((state) => state.logInRegister.token);
 
   const [userDetails, setUserDetails] = useState({
