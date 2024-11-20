@@ -80,7 +80,7 @@ const Login = () => {
             ) : (
               <form onSubmit={loginHandler}>
                 <label className="form-label" htmlFor="email">
-                  Enter your email *
+                  Enter your email*
                 </label>
                 <input
                   id="email"
@@ -91,7 +91,7 @@ const Login = () => {
                   value={userDetails.email}
                 />
                 <label className="form-label" htmlFor="password">
-                  Enter your password *
+                  Enter your password*
                 </label>
                 <input
                   id="password"

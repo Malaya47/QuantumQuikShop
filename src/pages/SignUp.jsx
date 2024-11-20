@@ -45,7 +45,7 @@ const SignUp = () => {
 
             <form onSubmit={signUpHandler}>
               <label className="form-label" htmlFor="name">
-                Enter your name *
+                Enter your name*
               </label>
               <input
                 name="name"
@@ -57,7 +57,7 @@ const SignUp = () => {
                 required
               />
               <label className="form-label" htmlFor="email">
-                Enter your email *
+                Enter your email*
               </label>
               <input
                 name="email"
@@ -69,7 +69,7 @@ const SignUp = () => {
                 required
               />
               <label className="form-label" htmlFor="password">
-                Enter your new password *
+                Enter your new password*
               </label>
               <input
                 name="password"
