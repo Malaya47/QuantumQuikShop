@@ -5,6 +5,8 @@ import HeroImageSection from "./components/HeroImageSection";
 // import NewArrivalsSection from "./components/NewArrivalsSection";
 import Footer from "./components/Footer";
 
+
+
 export default function App() {
   return (
     <main>

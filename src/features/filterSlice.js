@@ -1,14 +1,12 @@
 import { createSlice, createAsyncThunk, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL;
 
 export const fetchProductDetails = createAsyncThunk(
   "products/fetchProductDetails",
   async (productId) => {
-    const response = await axios.get(
-      `https://major-project-one-backend.vercel.app/productDetails/${productId}`
-    );
+    const response = await axios.get(`${API_URL}/productDetails/${productId}`);
 
     return response.data.product;
   }
@@ -17,7 +15,7 @@ export const fetchMenProducts = createAsyncThunk(
   "products/fetchMenProducts",
   async (category) => {
     const response = await axios.get(
-      `https://major-project-one-backend.vercel.app/products/category/${category}`
+      `${API_URL}/products/category/${category}`
     );
     // console.log(response.data);
     return response.data.products;
@@ -27,7 +25,7 @@ export const fetchWomenProducts = createAsyncThunk(
   "products/fetchWomenProducts",
   async (category) => {
     const response = await axios.get(
-      `https://major-project-one-backend.vercel.app/products/category/${category}`
+      `${API_URL}/products/category/${category}`
     );
     // console.log(response.data);
     return response.data.products;
@@ -37,17 +35,14 @@ export const fetchKidsProducts = createAsyncThunk(
   "products/fetchKidsProducts",
   async (category) => {
     const response = await axios.get(
-      `https://major-project-one-backend.vercel.app/products/category/${category}`
+      `${API_URL}/products/category/${category}`
     );
     // console.log(response.data);
     return response.data.products;
   }
 );
 
-
-
 const initialState = {
-  
   productDetail: {},
   products: [],
   menProducts: [],
@@ -176,8 +171,6 @@ export const filterSlice = createSlice({
     builder.addCase(fetchKidsProducts.rejected, (state, action) => {
       state.status = "error";
     });
-
-    
   },
 });
 
