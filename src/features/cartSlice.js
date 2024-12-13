@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -119,6 +120,7 @@ export const cartSlice = createSlice({
     });
     builder.addCase(postProductInCart.rejected, (state, action) => {
       state.status = "error";
+      state.error = action.error.message;
     });
     // cart increaseQuantity put request
     builder.addCase(putIncreaseQuantity.pending, (state, action) => {
@@ -129,6 +131,7 @@ export const cartSlice = createSlice({
     });
     builder.addCase(putIncreaseQuantity.rejected, (state, action) => {
       state.status = "error";
+      state.error = action.error.message;
     });
     // cart decreaseQuantity put request
     builder.addCase(putDecreaseQuantity.pending, (state, action) => {
@@ -139,6 +142,7 @@ export const cartSlice = createSlice({
     });
     builder.addCase(putDecreaseQuantity.rejected, (state, action) => {
       state.status = "error";
+      state.error = action.error.message;
     });
 
     // delete cart item
@@ -150,6 +154,7 @@ export const cartSlice = createSlice({
     });
     builder.addCase(deleteCartItem.rejected, (state, action) => {
       state.status = "error";
+      state.error = action.error.message;
     });
   },
 });
