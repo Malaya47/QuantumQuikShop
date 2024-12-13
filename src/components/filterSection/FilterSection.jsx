@@ -12,7 +12,7 @@ const FilterSection = ({ urlParam }) => {
   const handleClearFilter = () => {
     dispatch(
       clearFilter({
-        selectedPrice: 1000,
+        selectedPrice: 2000,
         selectedRating: null,
         selectedSort: null,
       })
