@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
-// import { signUpUser } from "../features/filterSlice";
 import { signUpUser } from "../features/logInRegisterSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [userDetails, setUserDetails] = useState({
     password: "",
@@ -27,69 +28,79 @@ const SignUp = () => {
       email: "",
       name: "",
     });
+    navigate(`/login`);
   };
 
   return (
     <>
       <Header />
-      <section className="d-flex justify-content-center align-items-center vh-100">
-        <div className="d-flex">
-          <div className="border p-4 bg-body-tertiary shadow rounded align-self-start">
-            <h1>Sign Up</h1>
-            <p>
-              Looks like you're new here! Sign up with your email to get started
-            </p>
-          </div>
-          <div className="ms-3 p-4">
-            {/* signup form */}
-
-            <form onSubmit={signUpHandler}>
-              <label className="form-label" htmlFor="name">
-                Enter your name*
-              </label>
-              <input
-                name="name"
-                id="name"
-                className="form-control form-control-sm mb-2"
-                type="text"
-                onChange={changeHandler}
-                value={userDetails.name}
-                required
-              />
-              <label className="form-label" htmlFor="email">
-                Enter your email*
-              </label>
-              <input
-                name="email"
-                id="email"
-                className="form-control form-control-sm mb-2"
-                type="text"
-                onChange={changeHandler}
-                value={userDetails.email}
-                required
-              />
-              <label className="form-label" htmlFor="password">
-                Enter your new password*
-              </label>
-              <input
-                name="password"
-                id="password"
-                className="form-control form-control-sm mb-2"
-                type="password"
-                onChange={changeHandler}
-                value={userDetails.password}
-                required
-              />
-
-              <div className="d-grid gap-2 mt-3 mb-2">
-                <button type="submit" className="btn btn-sm btn-dark">
-                  Sign Up
-                </button>
+      <section className="container d-flex justify-content-center align-items-center vh-100">
+        <div className="row w-100 justify-content-center">
+          <div className="col-md-6 col-lg-5">
+            <div className="card shadow border-0 rounded">
+              <div className="card-body p-4">
+                <h1 className="card-title text-center">Sign Up</h1>
+                <p className="text-center text-muted mb-4">
+                  Join the QuantumQuik revolution! Sign up now and unlock a
+                  world of seamless shopping and exclusive perks.
+                </p>
+                <form onSubmit={signUpHandler}>
+                  <div className="mb-3">
+                    <label className="form-label" htmlFor="name">
+                      Enter your name*
+                    </label>
+                    <input
+                      name="name"
+                      id="name"
+                      className="form-control"
+                      type="text"
+                      onChange={changeHandler}
+                      value={userDetails.name}
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label" htmlFor="email">
+                      Enter your email*
+                    </label>
+                    <input
+                      name="email"
+                      id="email"
+                      className="form-control"
+                      type="email"
+                      onChange={changeHandler}
+                      value={userDetails.email}
+                      required
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <label className="form-label" htmlFor="password">
+                      Enter your new password*
+                    </label>
+                    <input
+                      name="password"
+                      id="password"
+                      className="form-control"
+                      type="password"
+                      onChange={changeHandler}
+                      value={userDetails.password}
+                      required
+                    />
+                  </div>
+                  <div className="d-grid">
+                    <button
+                      type="submit"
+                      className="btn btn-dark text-uppercase"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                </form>
+                <p className="text-center mt-3">
+                  Already have an account? <Link to="/login">Sign In</Link>
+                </p>
               </div>
-              <p>
-                Already have an account? <Link to={"/login"}>Sign In</Link>
-              </p>
-            </form>
+            </div>
           </div>
         </div>
       </section>
