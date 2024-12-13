@@ -50,10 +50,10 @@ const Header = () => {
               <li className="nav-item">
                 <NavLink
                   to={"/login"}
-                  className="btn btn-secondary"
+                  className="text-light"
                   aria-current="page"
                 >
-                  Login
+                  <i class="bi bi-person-circle fs-3"></i>
                 </NavLink>
               </li>
               <li className="nav-item ms-3">

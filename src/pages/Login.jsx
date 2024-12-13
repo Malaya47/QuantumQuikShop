@@ -56,7 +56,7 @@ const Login = () => {
   }, [token]);
 
   return (
-    <>
+    <section>
       <ToastContainer theme="dark" autoClose={1000} />
       <Header />
       <section className="d-flex justify-content-center align-items-center vh-100 bg-light">
@@ -142,7 +142,7 @@ const Login = () => {
           </div>
         </div>
       </section>
-    </>
+    </section>
   );
 };
 
