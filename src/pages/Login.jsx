@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import Address from "./Address";
 import Header from "../components/Header";
 import { Link } from "react-router-dom";
-// import { generateToken, removeTokenFromRedux } from "../features/filterSlice";
 import {
   generateToken,
   removeTokenFromRedux,
 } from "../features/logInRegisterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -59,70 +59,86 @@ const Login = () => {
     <>
       <ToastContainer theme="dark" autoClose={1000} />
       <Header />
-      <section className="d-flex justify-content-center align-items-center vh-100">
-        <div className="d-flex">
-          <div className="border p-4 bg-body-tertiary shadow rounded align-self-start">
-            {isLoggedIn ? (
-              <Address />
-            ) : (
-              <>
-                <h1>Sign In</h1>
-                <p>Ready to dive back in? Let’s go!</p>
-              </>
-            )}
-          </div>
-          <div className="ms-3 p-4">
-            {/* Login form */}
-            {isLoggedIn ? (
-              <button onClick={logoutHandler} className="btn btn-dark">
-                LogOut
-              </button>
-            ) : (
-              <form onSubmit={loginHandler}>
-                <label className="form-label" htmlFor="email">
-                  Enter your email*
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  className="form-control form-control-sm mb-2"
-                  type="text"
-                  onChange={changeHandler}
-                  value={userDetails.email}
-                />
-                <label className="form-label" htmlFor="password">
-                  Enter your password*
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  className="form-control form-control-sm mb-2"
-                  type="password"
-                  onChange={changeHandler}
-                  value={userDetails.password}
-                />
+      <section className="d-flex justify-content-center align-items-center vh-100 bg-light">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-lg-6 col-md-8 col-sm-12">
+              <div className="card shadow-sm rounded-3">
+                <div className="card-body">
+                  {isLoggedIn ? (
+                    <>
+                      <h2 className="text-center mb-4">Welcome Back!</h2>
+                      <Address />
+                      <button
+                        onClick={logoutHandler}
+                        className="btn btn-dark w-100 mt-4"
+                      >
+                        Log Out
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="text-center mb-3">Sign In</h2>
+                      <p className="text-center text-muted mb-4">
+                        Get ready to shop smarter, faster, better – Your journey
+                        starts here!
+                      </p>
+                      <form onSubmit={loginHandler}>
+                        <div className="mb-3">
+                          <label className="form-label" htmlFor="email">
+                            Email Address
+                          </label>
+                          <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            className="form-control"
+                            placeholder="Enter your email"
+                            value={userDetails.email}
+                            onChange={changeHandler}
+                          />
+                        </div>
 
-                <div className="d-grid gap-2 mt-3 mb-2">
-                  <button
-                    type="submit"
-                    name="signInUser"
-                    className="btn btn-sm btn-dark"
-                  >
-                    Sign In
-                  </button>
-                  <button
-                    type="submit"
-                    name="signInGuest"
-                    className="btn btn-sm btn-dark"
-                  >
-                    Sign In as Guest
-                  </button>
+                        <div className="mb-3">
+                          <label className="form-label" htmlFor="password">
+                            Password
+                          </label>
+                          <input
+                            id="password"
+                            name="password"
+                            type="password"
+                            className="form-control"
+                            placeholder="Enter your password"
+                            value={userDetails.password}
+                            onChange={changeHandler}
+                          />
+                        </div>
+
+                        <div className="d-grid gap-2">
+                          <button
+                            type="submit"
+                            name="signInUser"
+                            className="btn btn-dark text-uppercase"
+                          >
+                            Sign In
+                          </button>
+                          <button
+                            type="submit"
+                            name="signInGuest"
+                            className="btn btn-secondary text-uppercase"
+                          >
+                            Sign in as Guest
+                          </button>
+                        </div>
+                      </form>
+                      <p className="text-center mt-3">
+                        Don’t have an account? <Link to="/signup">Sign Up</Link>
+                      </p>
+                    </>
+                  )}
                 </div>
-                <p>
-                  Don't have an account? <Link to={"/signup"}>Sign Up</Link>
-                </p>
-              </form>
-            )}
+              </div>
+            </div>
           </div>
         </div>
       </section>
