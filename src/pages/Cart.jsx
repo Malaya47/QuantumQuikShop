@@ -1,18 +1,18 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import {
-//   removeFromCart,
-//   incrementQuantity,
-//   decrementQuantity,
-//   addToWishlist,
-//   putIncreaseQuantity,
-//   putDecreaseQuantity,
-//   deleteCartItem,
-//   postProductInWishlist,
-//   gotoCartToggle,
-// } from "../features/filterSlice";
-import { removeFromCart, incrementQuantity, decrementQuantity, putIncreaseQuantity, putDecreaseQuantity, deleteCartItem, gotoCartToggle} from "../features/cartSlice";
-import { addToWishlist, postProductInWishlist } from "../features/wishlistSlice";
+import {
+  removeFromCart,
+  incrementQuantity,
+  decrementQuantity,
+  putIncreaseQuantity,
+  putDecreaseQuantity,
+  deleteCartItem,
+  gotoCartToggle,
+} from "../features/cartSlice";
+import {
+  addToWishlist,
+  postProductInWishlist,
+} from "../features/wishlistSlice";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import Header from "../components/Header";
@@ -228,6 +228,9 @@ const Cart = () => {
                           : totalAmount - cartTotalPrice}{" "}
                         on this order
                       </div>
+                      <button className="btn btn-dark w-100 text-uppercase">
+                        Place Order
+                      </button>
                     </section>
                   </div>
                 )}
