@@ -74,6 +74,8 @@ const initialState = {
   addresses: [],
   status: "idle",
   error: null,
+  name: "",
+  email: "",
 };
 
 export const logInRegisterSlice = createSlice({
@@ -104,6 +106,10 @@ export const logInRegisterSlice = createSlice({
     removeTokenFromRedux: (state, action) => {
       state.token = action.payload;
     },
+    removeUserDetails: (state, action) => {
+      state.name = action.payload.name;
+      state.email = action.payload.email;
+    },
   },
   extraReducers: (builder) => {
     // for authentication
@@ -112,7 +118,8 @@ export const logInRegisterSlice = createSlice({
     });
     builder.addCase(generateToken.fulfilled, (state, action) => {
       state.status = "Success";
-
+      state.name = action.payload.name;
+      state.email = action.payload.email;
       state.token = action.payload.token;
       localStorage.setItem("admin-token", action.payload.token);
     });
@@ -136,6 +143,7 @@ export const {
   updateAddress,
   removeAddress,
   removeTokenFromRedux,
+  removeUserDetails,
 } = logInRegisterSlice.actions;
 
 export default logInRegisterSlice.reducer;

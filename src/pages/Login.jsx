@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {
   generateToken,
   removeTokenFromRedux,
+  removeUserDetails,
 } from "../features/logInRegisterSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
@@ -14,6 +15,8 @@ const Login = () => {
   const dispatch = useDispatch();
 
   const token = useSelector((state) => state.logInRegister.token);
+  const name = useSelector((state) => state.logInRegister.name);
+  const email = useSelector((state) => state.logInRegister.email);
 
   const [userDetails, setUserDetails] = useState({
     password: "",
@@ -48,6 +51,7 @@ const Login = () => {
   const logoutHandler = () => {
     localStorage.removeItem("admin-token");
     dispatch(removeTokenFromRedux(null));
+    dispatch(removeUserDetails({ name: "", email: "" }));
     setIsLoggedIn(false);
   };
 
@@ -68,6 +72,14 @@ const Login = () => {
                   {isLoggedIn ? (
                     <>
                       <h2 className="text-center mb-4">Welcome Back!</h2>
+                      <div className="text-center">
+                        <p className="mb-1">
+                          <strong>Name:</strong> {name || "Guest User"}
+                        </p>
+                        <p className="mb-4">
+                          <strong>Email:</strong> {email || "Not Available"}
+                        </p>
+                      </div>
                       <Address />
                       <button
                         onClick={logoutHandler}
