@@ -14,6 +14,7 @@ import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
 import ScrollToTopWrapper from "./components/ScrollToTopWrapper";
 import SignUp from "./pages/SignUp";
+import OrderSummary from "./pages/OrderSummary";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +70,14 @@ const router = createBrowserRouter([
     element: (
       <ScrollToTopWrapper>
         <SignUp />
+      </ScrollToTopWrapper>
+    ),
+  },
+  {
+    path: "/orderSummary",
+    element: (
+      <ScrollToTopWrapper>
+        <OrderSummary />
       </ScrollToTopWrapper>
     ),
   },
