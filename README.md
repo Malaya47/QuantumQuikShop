@@ -1,4 +1,4 @@
-Project live link - quantum-quik-shop.vercel.app/
+Project live link - <a href="quantum-quik-shop.vercel.app/">quantum-quik-shop.vercel.app/ </a>
 
 # Quantum Quick Shop
 
