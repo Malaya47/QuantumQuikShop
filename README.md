@@ -1,3 +1,5 @@
+Project live link - quantum-quik-shop.vercel.app/
+
 # Quantum Quick Shop
 
 Quantum Quick Shop is a modern e-commerce platform designed for speed and efficiency, leveraging the latest in quantum-inspired algorithms (if applicable—otherwise, update this section with your tech stack and core value proposition).
